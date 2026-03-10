@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Products · Sunscreen Web{% endblock %}
+
+{% block content %}
+  <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
+    <div>
+      <h1 class="h4 fw-semibold mb-1">Sunscreen products</h1>
+      <div class="text-secondary small">Browse and share quick reviews.</div>
+    </div>
+    {% if current_user.is_authenticated %}
+      <a class="btn btn-primary" href="{{ url_for('products.new_product') }}">Add product</a>
+    {% else %}
+      <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Sign in to add</a>
+    {% endif %}
+  </div>
+
+  {% if products %}
+    <div class="row g-3">
+      {% for p in products %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="h6 mb-1">{{ p.name }}</h2>
+              <div class="text-secondary small">
+                {% if p.brand %}{{ p.brand }} · {% endif %}
+                {% if p.spf %}SPF {{ p.spf }}{% endif %}
+                {% if p.pa %} · {{ p.pa }}{% endif %}
+              </div>
+              {% if p.description %}
+                <p class="small text-secondary mt-2 mb-0 clamp-3">{{ p.description }}</p>
+              {% endif %}
+            </div>
+            <div class="card-footer bg-white d-flex align-items-center justify-content-between">
+              <a class="btn btn-sm btn-outline-primary" href="{{ url_for('products.product_detail', product_id=p.id) }}">Details</a>
+              {% if p.kind %}<span class="badge text-bg-light border">{{ p.kind }}</span>{% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">No products yet. Run <code>flask seed</code> or add one.</div>
+  {% endif %}
+{% endblock %}
+
