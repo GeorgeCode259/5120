@@ -1,23 +1,47 @@
-﻿# Sunscreen Web (前后端分离版)
+﻿# Sunscreen Web (Decoupled Version)
 
-本项目是一个关于**防晒**的 Web 应用，采用前后端分离架构。
+This is a **Sunscreen** web application built with a decoupled frontend-backend architecture.
 
-## 目录结构
+## Directory Structure
 
-- **backend/**: Flask REST API (Python) 及其虚拟环境
-- **frontend/**: React + Vite + TypeScript 前端应用
+- **backend/**: Flask REST API (Python) and its virtual environment.
+- **frontend/**: React + Vite + TypeScript frontend application.
 
-## 快速启动
+## Debugging Ports
 
-### 1. 后端 (Backend)
+In the local development environment, the following ports are used by default:
 
-1. 进入后端目录: `cd backend`
-2. 创建并激活虚拟环境: `python -m venv .venv` 然后 `.\.venv\Scripts\activate`
-3. 安装依赖: `pip install -r requirements.txt`
-4. 运行服务: `python run.py`
+- **Backend**: [http://127.0.0.1:5000](http://127.0.0.1:5000) (Flask REST API)
+- **Frontend**: [http://localhost:5173](http://localhost:5173) (React + Vite)
 
-### 2. 前端 (Frontend)
+## Development Guide
 
-1. 进入前端目录: `cd frontend`
-2. 安装依赖: `npm install`
-3. 运行开发服务器: `npm run dev`
+### 1. Branching Strategy
+
+- **Mandatory**: All development and commits must be done on the **test** branch.
+- For new features, it is recommended to create a feature branch (e.g., `feature/xxx`) from `test`, and merge it back to `test` once completed.
+
+### 2. Code Style
+
+- **Backend**: Follows PEP 8 guidelines.
+- **Frontend**: Uses ESLint and Prettier for code linting and formatting.
+
+### 3. API Development
+
+- Backend endpoints are defined under `backend/app/blueprints/`.
+- Frontend calls the backend API via `frontend/src/api/axios.ts`.
+
+## Quick Start
+
+### 1. Backend
+
+1. Navigate to the backend directory: `cd backend`
+2. Create and activate a virtual environment: `python -m venv .venv` then `.\.venv\Scripts\activate`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the service: `python run.py`
+
+### 2. Frontend
+
+1. Navigate to the frontend directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
