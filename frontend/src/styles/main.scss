@@ -1,0 +1,375 @@
+@import 'variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: $bg-color;
+  color: $text-primary;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+// Header
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 20px;
+
+  .logo {
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+
+  .search-container {
+    flex: 1;
+    max-width: 600px;
+    position: relative;
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      border-radius: $border-radius-lg;
+      border: 1px solid #ddd;
+      background-color: #f0f0f0;
+      font-size: 16px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+
+      &:focus {
+        outline: none;
+        border-color: #bbb;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+    }
+  }
+
+  .location-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #b0b0b0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: $border-radius-lg;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: $box-shadow;
+    white-space: nowrap;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// Layout Grid
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: auto auto;
+  gap: 30px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Cards
+.card {
+  background-color: $card-bg;
+  border-radius: $border-radius-lg;
+  padding: 30px;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+
+  &.city-card {
+    text-align: center;
+    justify-content: center;
+
+    .city-name {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .time {
+      font-size: 64px;
+      font-weight: 900;
+      margin: 10px 0;
+    }
+
+    .date {
+      font-size: 18px;
+      color: $text-secondary;
+      margin-top: 20px;
+    }
+  }
+
+  &.uv-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
+    .uv-index-section {
+      .uv-value {
+        font-size: 72px;
+        font-weight: 900;
+        margin: 0;
+      }
+      .uv-label {
+        font-size: 24px;
+        font-weight: 700;
+        color: #444;
+      }
+
+      .sun-times {
+        margin-top: 20px;
+        .sun-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+          font-size: 14px;
+          font-weight: 600;
+
+          .sun-icon {
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+    }
+
+    .weather-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .weather-icon {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+      }
+
+      .weather-desc {
+        font-size: 28px;
+        font-weight: 800;
+      }
+    }
+
+    .protection-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .warning {
+        display: flex;
+        gap: 10px;
+        color: #d32f2f;
+        font-size: 14px;
+        font-weight: 600;
+
+        .warning-icon {
+          font-size: 24px;
+        }
+      }
+
+      .protection-info {
+        display: flex;
+        gap: 30px;
+        margin-top: auto;
+
+        .info-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          font-size: 12px;
+          font-weight: 700;
+
+          .info-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+          }
+
+          .info-label {
+            margin-top: 5px;
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  &.recommendation-card {
+    .recommendation-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    .recommendation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .rec-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 16px;
+        font-weight: 700;
+
+        .rec-icon-box {
+          width: 50px;
+          height: 50px;
+          background-color: white;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &.forecast-card {
+    .forecast-title {
+      font-size: 24px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .forecast-graph {
+      flex: 1;
+      background-color: white;
+      border-radius: $border-radius-md;
+      position: relative;
+      overflow: hidden;
+
+      // This would be replaced by an actual chart library like Recharts
+      .graph-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+      }
+    }
+  }
+
+  &.auth-card {
+    max-width: 400px;
+    margin: 40px auto;
+    text-align: left;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: $border-radius-md;
+        border: 1px solid #ddd;
+        background-color: white;
+        font-size: 16px;
+        box-sizing: border-box;
+
+        &:focus {
+          outline: none;
+          border-color: #bbb;
+        }
+      }
+    }
+
+    .error-msg {
+      background-color: #ffebee;
+      color: #c62828;
+      padding: 10px;
+      border-radius: $border-radius-md;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .auth-btn {
+      width: 100%;
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: $border-radius-md;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin-bottom: 20px;
+
+      &:hover {
+        background-color: #000;
+      }
+    }
+
+    .auth-footer {
+      text-align: center;
+      font-size: 14px;
+      color: $text-secondary;
+
+      a {
+        color: #333;
+        font-weight: 700;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
