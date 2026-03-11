@@ -5,4 +5,5 @@ Flask-JWT-Extended
 Flask-CORS
 email-validator
 python-dotenv
+requests
 gunicorn
