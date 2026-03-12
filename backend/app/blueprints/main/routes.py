@@ -43,7 +43,7 @@ def get_weather_uv():
                 "sunset": weather_data["sys"]["sunset"],
                 "weather": weather_data["weather"][0]
             },
-            "hourly": [] # Current Weather API doesn't provide hourly forecast
+            "hourly": []  # Current Weather API doesn't provide hourly forecast
         })
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
