@@ -191,8 +191,55 @@ body {
         font-size: 14px;
         font-weight: 600;
 
+        &.low-uv {
+          color: #2e7d32;
+        }
+
+        &.extreme-uv {
+          color: #b71c1c;
+          font-weight: 800;
+        }
+
         .warning-icon {
           font-size: 24px;
+        }
+      }
+
+      .protection-info-text {
+        font-size: 13px;
+        line-height: 1.4;
+        color: $text-secondary;
+        font-weight: 600;
+        margin-top: 5px;
+      }
+
+      .dosage-breakdown {
+        background: rgba(255, 255, 255, 0.5);
+        padding: 12px;
+        border-radius: $border-radius-md;
+        margin-top: 5px;
+
+        .dosage-title {
+          font-size: 13px;
+          font-weight: 800;
+          margin-bottom: 8px;
+          color: #333;
+        }
+
+        .dosage-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 6px;
+
+          .dosage-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 700;
+            color: $text-secondary;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 2px;
+          }
         }
       }
 

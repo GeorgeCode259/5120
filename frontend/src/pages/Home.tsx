@@ -212,28 +212,58 @@ const Home: React.FC = () => {
           </div>
 
           <div className="protection-section">
-            <div className="warning">
-              <span className="warning-icon">⚠️</span>
-              <div>Sun protection strongly recommendation.</div>
-            </div>
-            <div className="protection-info">
-              <div className="info-item">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M2 12h20M2 12l2 2m-2-2l2-2" />
-                  <path d="M12 2v20" />
-                </svg>
-                <div className="info-label">SPF 50+</div>
-                <div className="small">water-resistant</div>
-              </div>
-              <div className="info-item">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 6v6l4 2" />
-                </svg>
-                <div className="info-label">2 hours</div>
-                <div className="small">Reapply</div>
-              </div>
-            </div>
+            {current.uv < 3 ? (
+              <>
+                <div className="warning low-uv">
+                  <span className="warning-icon">✅</span>
+                  <div>Low UV Levels</div>
+                </div>
+                <div className="protection-info-text">
+                  Protection is generally not required unless outdoors for extended periods.
+                </div>
+              </>
+            ) : current.uv < 8 ? (
+              <>
+                <div className="warning">
+                  <span className="warning-icon">⚠️</span>
+                  <div>Sun protection strongly recommendation.</div>
+                </div>
+                <div className="protection-info">
+                  <div className="info-item">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M2 12h20M2 12l2 2m-2-2l2-2" />
+                      <path d="M12 2v20" />
+                    </svg>
+                    <div className="info-label">SPF 50+</div>
+                    <div className="small">water-resistant</div>
+                  </div>
+                  <div className="info-item">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    <div className="info-label">2 hours</div>
+                    <div className="small">Reapply</div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="warning extreme-uv">
+                  <span className="warning-icon">🚨</span>
+                  <div>Extreme UV Risk</div>
+                </div>
+                <div className="dosage-breakdown">
+                  <div className="dosage-title">Sunscreen Dosage (ml):</div>
+                  <div className="dosage-grid">
+                    <div className="dosage-item"><span>Face & Neck</span> <span>5ml</span></div>
+                    <div className="dosage-item"><span>Each Arm</span> <span>5ml</span></div>
+                    <div className="dosage-item"><span>Each Leg</span> <span>10ml</span></div>
+                    <div className="dosage-item"><span>Torso</span> <span>10ml</span></div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </section>
 
