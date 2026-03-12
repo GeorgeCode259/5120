@@ -6,6 +6,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from flask import Flask
 
+__version__ = "0.1.0"
+
 from .cli import register_cli
 from .config import DevelopmentConfig, ProductionConfig
 from .extensions import cors, db, jwt, migrate
