@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../api/axios';
 
 interface WeatherData {
+  name: string;
   current: {
     uv: number;
     temp: number;
@@ -33,22 +34,47 @@ const Home: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  const fetchWeather = async (lat?: number, lon?: number) => {
+    try {
+      setLoading(true);
+      const url = lat && lon ? `/weather/uv?lat=${lat}&lon=${lon}` : '/weather/uv';
+      const response = await api.get(url);
+      setWeatherData(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching weather:', err);
+      setError('Failed to fetch weather data.');
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const response = await api.get('/weather/uv');
-        setWeatherData(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching weather:', err);
-        setError('Failed to fetch weather data.');
-        setLoading(false);
-      }
-    };
-
     fetchWeather();
+
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000); // Update time every minute
+
+    return () => clearInterval(timer);
   }, []);
+
+  const handleCurrentLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchWeather(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          alert("Could not get your current location.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  };
 
   const getUVStatus = (uv: number) => {
     if (uv < 3) return 'Low';
@@ -93,7 +119,7 @@ const Home: React.FC = () => {
           />
         </div>
 
-        <button className="location-btn">
+        <button className="location-btn" onClick={handleCurrentLocation}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
             <circle cx="12" cy="10" r="3" />
@@ -113,9 +139,9 @@ const Home: React.FC = () => {
       <main className="dashboard-grid">
         {/* City Card */}
         <section className="card city-card">
-          <h2 className="city-name">Clayton</h2>
-          <div className="time">12:00 PM</div>
-          <div className="date">Monday, 9 March</div>
+          <h2 className="city-name">{weatherData.name}</h2>
+          <div className="time">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+          <div className="date">{currentTime.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}</div>
         </section>
 
         {/* UV & Weather Card */}

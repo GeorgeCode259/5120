@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import jsonify, current_app
+from flask import jsonify, current_app, request
 
 from ...models import Product
 from . import bp
@@ -12,8 +12,8 @@ def get_weather_uv():
     if not api_key:
         return jsonify({"error": "OpenWeather API Key not configured"}), 500
     
-    lat = -37.9150
-    lon = 145.1290
+    lat = request.args.get('lat', -37.9150, type=float)
+    lon = request.args.get('lon', 145.1290, type=float)
     
     # Using Current Weather API which is available to all API keys
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric"
@@ -35,6 +35,7 @@ def get_weather_uv():
             uv_value = uv_res.json().get('value', 0)
         
         return jsonify({
+            "name": weather_data["name"],
             "current": {
                 "uv": uv_value,
                 "temp": weather_data["main"]["temp"],
