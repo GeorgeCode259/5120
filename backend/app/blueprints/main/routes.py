@@ -12,8 +12,28 @@ def get_weather_uv():
     if not api_key:
         return jsonify({"error": "OpenWeather API Key not configured"}), 500
     
-    lat = request.args.get('lat', -37.9150, type=float)
-    lon = request.args.get('lon', 145.1290, type=float)
+    q = request.args.get('q')
+    lat = request.args.get('lat', type=float)
+    lon = request.args.get('lon', type=float)
+
+    if q:
+        # If city name is provided, get coordinates first
+        geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={q}&limit=1&appid={api_key}"
+        try:
+            geo_res = requests.get(geo_url)
+            if geo_res.status_code == 200 and geo_res.json():
+                location = geo_res.json()[0]
+                lat = location['lat']
+                lon = location['lon']
+            else:
+                return jsonify({"error": "City not found"}), 404
+        except requests.exceptions.RequestException as e:
+            return jsonify({"error": f"Geocoding error: {str(e)}"}), 500
+    
+    # Fallback to defaults if neither q nor lat/lon are provided
+    if lat is None or lon is None:
+        lat = -37.9150
+        lon = 145.1290
     
     # Using Current Weather API which is available to all API keys
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric"

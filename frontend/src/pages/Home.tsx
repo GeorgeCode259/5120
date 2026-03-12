@@ -36,29 +36,43 @@ const Home: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const fetchWeather = async (lat?: number, lon?: number) => {
+  const fetchWeather = React.useCallback(async (lat?: number, lon?: number, q?: string) => {
     try {
       setLoading(true);
-      const url = lat && lon ? `/weather/uv?lat=${lat}&lon=${lon}` : '/weather/uv';
+      let url = '/weather/uv';
+      if (q) {
+        url = `/weather/uv?q=${encodeURIComponent(q)}`;
+      } else if (lat !== undefined && lon !== undefined) {
+        url = `/weather/uv?lat=${lat}&lon=${lon}`;
+      }
       const response = await api.get(url);
       setWeatherData(response.data);
       setLoading(false);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching weather:', err);
-      setError('Failed to fetch weather data.');
+      let errorMessage = 'Failed to fetch weather data.';
+      if (err && typeof err === 'object' && 'response' in err) {
+        const axiosError = err as { response: { data: { error?: string } } };
+        errorMessage = axiosError.response?.data?.error || errorMessage;
+      }
+      setError(errorMessage);
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchWeather();
+    // 初始加载时，loading 已经是 true，所以我们只需要触发异步获取
+    const initFetch = async () => {
+      await fetchWeather();
+    };
+    initFetch();
 
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 60000); // Update time every minute
 
     return () => clearInterval(timer);
-  }, []);
+  }, [fetchWeather]);
 
   const handleCurrentLocation = () => {
     if ("geolocation" in navigator) {
@@ -73,6 +87,18 @@ const Home: React.FC = () => {
       );
     } else {
       alert("Geolocation is not supported by your browser.");
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      fetchWeather(undefined, undefined, searchQuery.trim());
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
   };
 
@@ -116,6 +142,7 @@ const Home: React.FC = () => {
             placeholder="Search for your preferred city..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
