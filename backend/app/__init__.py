@@ -6,23 +6,29 @@ from pathlib import Path
 from dotenv import load_dotenv
 from flask import Flask
 
+__version__ = "0.1.0"
+
 from .cli import register_cli
 from .config import DevelopmentConfig, ProductionConfig
 from .extensions import cors, db, jwt, migrate
 
+
 def _coerce_database_url(url: str) -> str:
     # Some platforms still provide "postgres://" which SQLAlchemy doesn't like.
     if url.startswith("postgres://"):
-        return "postgresql://" + url[len("postgres://") :]
+        return "postgresql://" + url[len("postgres://"):]
     return url
+
 
 def create_app() -> Flask:
     load_dotenv()
 
     app = Flask(__name__, instance_relative_config=True)
 
-    env = (os.environ.get("APP_ENV") or os.environ.get("FLASK_ENV") or "development").lower()
-    app.config.from_object(ProductionConfig if env == "production" else DevelopmentConfig)
+    env = os.environ.get("APP_ENV") or os.environ.get("FLASK_ENV")
+    env = (env or "development").lower()
+    config = ProductionConfig if env == "production" else DevelopmentConfig
+    app.config.from_object(config)
 
     os.makedirs(app.instance_path, exist_ok=True)
 
@@ -30,7 +36,8 @@ def create_app() -> Flask:
     if db_url:
         app.config["SQLALCHEMY_DATABASE_URI"] = _coerce_database_url(db_url)
     else:
-        app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{Path(app.instance_path) / 'app.db'}"
+        db_path = Path(app.instance_path) / "app.db"
+        app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -48,4 +55,3 @@ def create_app() -> Flask:
     register_cli(app)
 
     return app
-

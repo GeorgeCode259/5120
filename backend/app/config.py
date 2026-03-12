@@ -8,6 +8,7 @@ class Config:
 
     # Helpful for long-lived connections (e.g., AWS RDS)
     SQLALCHEMY_ENGINE_OPTIONS = {"pool_pre_ping": True}
+    OPENWEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 
 
 class DevelopmentConfig(Config):
