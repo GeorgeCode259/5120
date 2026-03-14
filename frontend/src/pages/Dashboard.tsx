@@ -44,11 +44,84 @@ const Dashboard: React.FC = () => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   };
 
+  const getClothingRecommendations = (uv: number) => {
+    if (uv < 3) {
+      return [
+        {
+          icon: "🕶️",
+          text: "Wear sunglasses",
+          desc: "Wear sunglasses on bright days."
+        }
+      ];
+    }
+    if (uv < 6) {
+      return [
+        {
+          icon: "👕",
+          text: "Cover up",
+          desc: "Wear a T-shirt or shirt."
+        },
+        {
+          icon: "👒",
+          text: "Wear a hat",
+          desc: "Wear a wide-brimmed hat."
+        },
+        {
+          icon: "🕶️",
+          text: "Wear sunglasses",
+          desc: "Protect your eyes."
+        }
+      ];
+    }
+    if (uv < 8) {
+      return [
+        {
+          icon: "👕",
+          text: "Protection required",
+          desc: "Wear sun-protective clothing covering as much skin as possible."
+        },
+        {
+          icon: "👒",
+          text: "Wear a hat",
+          desc: "Wear a hat that shades face, neck and ears."
+        },
+        {
+          icon: "🕶️",
+          text: "Wear sunglasses",
+          desc: "Wrap-around sunglasses are best."
+        }
+      ];
+    }
+    return [
+      {
+        icon: "☂️",
+        text: "Seek shade",
+        desc: "Seek shade, especially during midday hours."
+      },
+      {
+        icon: "👕",
+        text: "Protective clothing",
+        desc: "Wear loose, long-sleeved shirt and trousers."
+      },
+      {
+        icon: "👒",
+        text: "Wear a hat",
+        desc: "Wear a broad-brimmed hat."
+      },
+      {
+        icon: "🕶️",
+        text: "Wear sunglasses",
+        desc: "Wear quality sunglasses."
+      }
+    ];
+  };
+
   if (error) return <div className="dashboard-container">Error: {error}</div>;
 
   const { current } = weatherData;
   const isDataReady = weatherData.name !== '--';
   const showLoading = loading || !isDataReady;
+  const recommendations = getClothingRecommendations(current.uv);
 
   return (
     <div className="dashboard-container">
@@ -168,35 +241,13 @@ const Dashboard: React.FC = () => {
         <section className="card recommendation-card">
           <h3 className="recommendation-title">Cloth Recommendation</h3>
           <div className="recommendation-list">
-            <div className="rec-item">
-              <div className="rec-icon-box">👕</div>
-              <div>on sun protective clothing</div>
-            </div>
-            <div className="rec-item">
-              <div className="rec-icon-box">👒</div>
-              <div>on a sun protective hat</div>
-            </div>
-            <div className="rec-item">
-              <div className="rec-icon-box">🕶️</div>
-              <div>on sunglasses</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Forecast Card */}
-        <section className="card forecast-card">
-          <h3 className="forecast-title">Hourly Forecast:</h3>
-          <div className="forecast-items">
-            {weatherData.hourly.map((hour, index) => (
-              <div key={index} className="forecast-item">
-                <div className="forecast-time">{formatTime(hour.dt)}</div>
-                <img 
-                  src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`} 
-                  alt={hour.weather[0].main} 
-                  className="forecast-icon"
-                />
-                <div className="forecast-temp">{Math.round(hour.temp)}°C</div>
-                <div className="forecast-uv">UV {Math.round(hour.uvi)}</div>
+            {recommendations.map((item, index) => (
+              <div key={index} className="rec-item">
+                <div className="rec-icon-box">{item.icon}</div>
+                <div className="rec-text-content">
+                  <div className="rec-main-text">{item.text}</div>
+                  <div className="rec-desc-text">{item.desc}</div>
+                </div>
               </div>
             ))}
           </div>
