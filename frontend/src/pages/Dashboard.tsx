@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useWeather } from '../context/useWeather';
 
 const Dashboard: React.FC = () => {
@@ -7,12 +7,38 @@ const Dashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.requestLocation) {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            navigate(`/dashboard?lat=${latitude}&lon=${longitude}`, { replace: true });
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+            alert("Could not get your current location.");
+            navigate('/dashboard', { replace: true });
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+  }, [location.state, navigate]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const q = searchParams.get('q');
     const lat = searchParams.get('lat');
     const lon = searchParams.get('lon');
+
+    // If we are waiting for location from Home page, don't fetch default weather
+    if (location.state?.requestLocation && !lat && !lon) {
+      return;
+    }
 
     if (q) {
       fetchWeather(undefined, undefined, q);
@@ -21,7 +47,7 @@ const Dashboard: React.FC = () => {
     } else {
       fetchWeather();
     }
-  }, [location.search, fetchWeather]);
+  }, [location.search, fetchWeather, location.state]);
 
   useEffect(() => {
     const timer = setInterval(() => {

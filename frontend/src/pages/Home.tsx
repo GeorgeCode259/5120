@@ -6,20 +6,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCurrentLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          navigate(`/dashboard?lat=${latitude}&lon=${longitude}`);
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-          alert("Could not get your current location.");
-        }
-      );
-    } else {
-      alert("Geolocation is not supported by your browser.");
-    }
+    navigate('/dashboard', { state: { requestLocation: true } });
   };
 
   const handleSearch = () => {
