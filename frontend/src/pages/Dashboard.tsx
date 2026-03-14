@@ -45,9 +45,12 @@ const Dashboard: React.FC = () => {
     } else if (lat && lon) {
       fetchWeather(lat, lon);
     } else {
-      fetchWeather();
+      // Only fetch default if we don't have valid data
+      if (weatherData.name === '--') {
+        fetchWeather();
+      }
     }
-  }, [location.search, fetchWeather, location.state]);
+  }, [location.search, fetchWeather, location.state, weatherData.name]);
 
   useEffect(() => {
     const timer = setInterval(() => {
