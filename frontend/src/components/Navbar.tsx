@@ -23,6 +23,12 @@ const Navbar: React.FC = () => {
           >
             Dashboard
           </Link>
+          <Link 
+            to="/uv-awareness" 
+            className={`navbar-item ${location.pathname === '/uv-awareness' ? 'active' : ''}`}
+          >
+            Awareness
+          </Link>
         </div>
         <div className="navbar-auth">
           <Link to="/login" className="navbar-item">Login</Link>

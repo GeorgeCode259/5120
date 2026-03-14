@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { WeatherProvider } from './context/WeatherContext';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import UVAwareness from './pages/UVAwareness';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Navbar from './components/Navbar';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/uv-awareness" element={<UVAwareness />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>
