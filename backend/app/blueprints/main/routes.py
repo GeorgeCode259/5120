@@ -38,8 +38,8 @@ def get_weather_uv():
     # Using Current Weather API which is available to all API keys
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric"
     
-    # We also need UV index, which is sometimes a separate call in 2.5
-    uv_url = f"https://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={api_key}"
+    # Using Open-Meteo for Real-time UV Index (OpenWeatherMap /uvi often returns daily max)
+    uv_url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=uv_index"
     
     try:
         # Get current weather
@@ -52,7 +52,9 @@ def get_weather_uv():
         uv_res = requests.get(uv_url)
         uv_value = 0
         if uv_res.status_code == 200:
-            uv_value = uv_res.json().get('value', 0)
+            uv_data = uv_res.json()
+            if 'current' in uv_data and 'uv_index' in uv_data['current']:
+                uv_value = uv_data['current']['uv_index']
         
         return jsonify({
             "name": weather_data["name"],
@@ -61,7 +63,8 @@ def get_weather_uv():
                 "temp": weather_data["main"]["temp"],
                 "sunrise": weather_data["sys"]["sunrise"],
                 "sunset": weather_data["sys"]["sunset"],
-                "weather": weather_data["weather"][0]
+                "weather": weather_data["weather"][0],
+                "timezone": weather_data.get("timezone", 0)
             },
             "hourly": []  # Current Weather API doesn't provide hourly forecast
         })
