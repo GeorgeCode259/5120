@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+html {
+  touch-action: pan-y;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -13,6 +19,11 @@ body {
   background-color: $bg-color;
   color: $text-primary;
   min-height: 100vh;
+  /* Fallback background if video fails */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 // Background Video
@@ -20,9 +31,12 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   z-index: 0;
   pointer-events: none;
 }
@@ -39,6 +53,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+
+  @media (max-width: 768px) {
+    padding: 20px 15px;
+  }
 }
 
 // Header
@@ -135,6 +153,12 @@ body {
   box-shadow: $box-shadow;
   display: flex;
   flex-direction: column;
+  width: 100%; /* Ensure card takes full width of grid cell */
+
+  @media (max-width: 768px) {
+    padding: 20px; /* Reduce padding on mobile */
+    border-radius: $border-radius-md;
+  }
 
   &.city-card {
     text-align: center;
@@ -144,12 +168,20 @@ body {
       font-size: 32px;
       font-weight: 800;
       margin-bottom: 10px;
+
+      @media (max-width: 480px) {
+        font-size: 24px;
+      }
     }
 
     .time {
       font-size: 64px;
       font-weight: 900;
       margin: 10px 0;
+
+      @media (max-width: 480px) {
+        font-size: 48px;
+      }
     }
 
     .date {
@@ -169,6 +201,10 @@ body {
         font-size: 72px;
         font-weight: 900;
         margin: 0;
+
+        @media (max-width: 480px) {
+          font-size: 56px;
+        }
       }
       .uv-label {
         font-size: 24px;
@@ -302,6 +338,34 @@ body {
         }
       }
     }
+
+    /* Mobile styles for UV Card */
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      text-align: center;
+      
+      .uv-index-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .sun-times {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+
+      .protection-section {
+        .warning {
+          justify-content: center;
+        }
+        .protection-info {
+          justify-content: center;
+        }
+      }
+    }
   }
 
   &.recommendation-card {
@@ -315,8 +379,12 @@ body {
 
     .recommendation-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr; /* Stack on very small screens */
+      }
 
       .rec-item {
         display: flex;
@@ -363,91 +431,6 @@ body {
             line-height: 1.5;
             font-weight: 500;
           }
-        }
-      }
-    }
-  }
-
-  &.auth-card {
-    max-width: 400px;
-    margin: 40px auto;
-    text-align: left;
-
-    h2 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-
-      label {
-        display: block;
-        font-weight: 700;
-        margin-bottom: 8px;
-        font-size: 14px;
-      }
-
-      input {
-        width: 100%;
-        padding: 12px;
-        border-radius: $border-radius-md;
-        border: $glass-border;
-        background-color: rgba(255, 255, 255, 0.7);
-        backdrop-filter: $glass-blur;
-        font-size: 16px;
-        box-sizing: border-box;
-
-        &:focus {
-          outline: none;
-          border-color: rgba(255, 255, 255, 0.9);
-          background-color: rgba(255, 255, 255, 0.9);
-        }
-      }
-    }
-
-    .error-msg {
-      background-color: #ffebee;
-      color: #c62828;
-      padding: 10px;
-      border-radius: $border-radius-md;
-      margin-bottom: 20px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .auth-btn {
-      width: 100%;
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: $border-radius-md;
-      font-weight: 700;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      margin-bottom: 20px;
-
-      &:hover {
-        background-color: #000;
-      }
-    }
-
-    .auth-footer {
-      text-align: center;
-      font-size: 14px;
-      color: $text-secondary;
-
-      a {
-        color: #333;
-        font-weight: 700;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
         }
       }
     }

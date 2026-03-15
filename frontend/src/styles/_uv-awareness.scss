@@ -12,7 +12,7 @@
 
   .awareness-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
   }
 }
@@ -25,6 +25,11 @@
   border-radius: $border-radius-lg;
   padding: 30px;
   box-shadow: $box-shadow;
+  
+  /* Mobile padding adjustment */
+  @media (max-width: 480px) {
+    padding: 20px;
+  }
   
   h2 {
     font-size: 24px;
@@ -51,6 +56,8 @@
           width: 100px;
           font-weight: 600;
           font-size: 14px;
+          /* Allow label to shrink or wrap on small screens */
+          flex-shrink: 0; 
         }
 
         .bar-track {
@@ -122,9 +129,15 @@
     margin-top: 30px;
     border-bottom: 2px solid $text-primary;
     padding-bottom: 10px;
+    gap: 5px; /* Add gap for flex items */
 
     .risk-column {
       width: 60px;
+      /* Make columns flexible but with max width */
+      flex: 1;
+      max-width: 60px;
+      min-width: 40px; 
+      
       background-color: #ccc;
       border-radius: 8px 8px 0 0;
       position: relative;
