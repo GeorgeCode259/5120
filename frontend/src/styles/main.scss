@@ -197,6 +197,22 @@ body {
     gap: 20px;
 
     .uv-index-section {
+      &.uv-low {
+        .uv-value, .uv-label { color: #2e7d32; } /* Darker green for better contrast */
+      }
+      &.uv-moderate {
+        .uv-value, .uv-label { color: #f57f17; } /* Darker yellow/orange */
+      }
+      &.uv-high {
+        .uv-value, .uv-label { color: #e65100; } /* Dark orange */
+      }
+      &.uv-very-high {
+        .uv-value, .uv-label { color: #c62828; } /* Red */
+      }
+      &.uv-extreme {
+        .uv-value, .uv-label { color: #6a1b9a; } /* Purple */
+      }
+
       .uv-value {
         font-size: 72px;
         font-weight: 900;

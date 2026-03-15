@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useWeather } from '../context/useWeather';
+import { getUVProtectionAdvice } from '../utils/uvAdvice';
 
 const Dashboard: React.FC = () => {
   const { weatherData, loading, error, fetchWeather } = useWeather();
@@ -60,12 +61,12 @@ const Dashboard: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const getUVStatus = (uv: number) => {
-    if (uv < 3) return 'Low';
-    if (uv < 6) return 'Moderate';
-    if (uv < 8) return 'High';
-    if (uv < 11) return 'Very high';
-    return 'Extreme';
+  const getUVColorClass = (uv: number) => {
+    if (uv < 3) return 'uv-low';
+    if (uv < 6) return 'uv-moderate';
+    if (uv < 8) return 'uv-high';
+    if (uv < 11) return 'uv-very-high';
+    return 'uv-extreme';
   };
 
   const formatTime = (timestamp: number) => {
@@ -74,85 +75,14 @@ const Dashboard: React.FC = () => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC' });
   };
 
-  const getClothingRecommendations = (uv: number) => {
-    if (uv < 3) {
-      return [
-        {
-          icon: "🕶️",
-          text: "Wear sunglasses",
-          desc: "Wear sunglasses on bright days."
-        }
-      ];
-    }
-    if (uv < 6) {
-      return [
-        {
-          icon: "👕",
-          text: "Cover up",
-          desc: "Wear a T-shirt or shirt."
-        },
-        {
-          icon: "👒",
-          text: "Wear a hat",
-          desc: "Wear a wide-brimmed hat."
-        },
-        {
-          icon: "🕶️",
-          text: "Wear sunglasses",
-          desc: "Protect your eyes."
-        }
-      ];
-    }
-    if (uv < 8) {
-      return [
-        {
-          icon: "👕",
-          text: "Protection required",
-          desc: "Wear sun-protective clothing covering as much skin as possible."
-        },
-        {
-          icon: "👒",
-          text: "Wear a hat",
-          desc: "Wear a hat that shades face, neck and ears."
-        },
-        {
-          icon: "🕶️",
-          text: "Wear sunglasses",
-          desc: "Wrap-around sunglasses are best."
-        }
-      ];
-    }
-    return [
-      {
-        icon: "☂️",
-        text: "Seek shade",
-        desc: "Seek shade, especially during midday hours."
-      },
-      {
-        icon: "👕",
-        text: "Protective clothing",
-        desc: "Wear loose, long-sleeved shirt and trousers."
-      },
-      {
-        icon: "👒",
-        text: "Wear a hat",
-        desc: "Wear a broad-brimmed hat."
-      },
-      {
-        icon: "🕶️",
-        text: "Wear sunglasses",
-        desc: "Wear quality sunglasses."
-      }
-    ];
-  };
 
   if (error) return <div className="dashboard-container">Error: {error}</div>;
 
   const { current } = weatherData;
   const isDataReady = weatherData.name !== '--';
   const showLoading = loading || !isDataReady;
-  const recommendations = getClothingRecommendations(current.uv);
-
+  const uvAdvice = getUVProtectionAdvice(current.uv);
+  
   const localTime = new Date(currentTime.getTime() + current.timezone * 1000);
 
   return (
@@ -175,9 +105,9 @@ const Dashboard: React.FC = () => {
 
         {/* UV & Weather Card */}
         <section className="card uv-card">
-          <div className="uv-index-section">
+          <div className={`uv-index-section ${getUVColorClass(current.uv)}`}>
             <div className="uv-value">UV {Math.round(current.uv)}</div>
-            <div className="uv-label">{getUVStatus(current.uv)}</div>
+            <div className="uv-label">{uvAdvice.protectionLevel}</div>
             <div className="sun-times">
               <div className="sun-item">
                 <span className="sun-icon">
@@ -214,56 +144,60 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className="protection-section">
-            {current.uv < 3 ? (
+            {uvAdvice.protectionLevel === 'Low' ? (
               <>
                 <div className="warning low-uv">
                   <span className="warning-icon">✅</span>
                   <div>Low UV Levels</div>
                 </div>
                 <div className="protection-info-text">
-                  Protection is generally not required unless outdoors for extended periods.
-                </div>
-              </>
-            ) : current.uv < 8 ? (
-              <>
-                <div className="warning">
-                  <span className="warning-icon">⚠️</span>
-                  <div>Sun protection strongly recommendation.</div>
-                </div>
-                <div className="protection-info">
-                  <div className="info-item">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M2 12h20M2 12l2 2m-2-2l2-2" />
-                      <path d="M12 2v20" />
-                    </svg>
-                    <div className="info-label">SPF 50+</div>
-                    <div className="small">water-resistant</div>
-                  </div>
-                  <div className="info-item">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
-                    <div className="info-label">2 hours</div>
-                    <div className="small">Reapply</div>
-                  </div>
+                  {uvAdvice.clothingAdvice.summary}
                 </div>
               </>
             ) : (
               <>
-                <div className="warning extreme-uv">
-                  <span className="warning-icon">🚨</span>
-                  <div>Extreme UV Risk</div>
+                <div className={`warning ${['Very High', 'Extreme'].includes(uvAdvice.protectionLevel) ? 'extreme-uv' : ''}`}>
+                  <span className="warning-icon">{['Very High', 'Extreme'].includes(uvAdvice.protectionLevel) ? '🚨' : '⚠️'}</span>
+                  <div>{uvAdvice.protectionLevel} Protection Required</div>
                 </div>
-                <div className="dosage-breakdown">
-                  <div className="dosage-title">Sunscreen Dosage (ml):</div>
-                  <div className="dosage-grid">
-                    <div className="dosage-item"><span>Face & Neck</span> <span>5ml</span></div>
-                    <div className="dosage-item"><span>Each Arm</span> <span>5ml</span></div>
-                    <div className="dosage-item"><span>Each Leg</span> <span>10ml</span></div>
-                    <div className="dosage-item"><span>Torso</span> <span>10ml</span></div>
-                  </div>
-                </div>
+                
+                {uvAdvice.sunscreenAdvice && (
+                  <>
+                    <div className="protection-info">
+                      <div className="info-item">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <path d="M2 12h20M2 12l2 2m-2-2l2-2" />
+                          <path d="M12 2v20" />
+                        </svg>
+                        <div className="info-label">SPF {uvAdvice.sunscreenAdvice.spf}</div>
+                        <div className="small">water-resistant</div>
+                      </div>
+                      <div className="info-item">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 6v6l4 2" />
+                        </svg>
+                        <div className="info-label">{uvAdvice.sunscreenAdvice.reapplication}</div>
+                        <div className="small">Reapply</div>
+                      </div>
+                    </div>
+
+                    <div className="dosage-breakdown">
+                      <div className="dosage-title">Sunscreen Dosage (SPF {uvAdvice.sunscreenAdvice.spf}):</div>
+                      <div className="dosage-grid">
+                        <div className="dosage-item"><span>Face & Neck</span> <span>{uvAdvice.sunscreenAdvice.dosage.faceNeck}</span></div>
+                        <div className="dosage-item"><span>Arms</span> <span>{uvAdvice.sunscreenAdvice.dosage.arms}</span></div>
+                        <div className="dosage-item"><span>Legs</span> <span>{uvAdvice.sunscreenAdvice.dosage.legs}</span></div>
+                        <div className="dosage-item"><span>Torso</span> <span>{uvAdvice.sunscreenAdvice.dosage.torso}</span></div>
+                      </div>
+                      {uvAdvice.sunscreenAdvice.scenarios.length > 0 && (
+                        <div className="scenarios" style={{marginTop: '10px', fontSize: '0.8rem', color: '#666'}}>
+                          Recommended for: {uvAdvice.sunscreenAdvice.scenarios.join(', ')}
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
@@ -271,14 +205,38 @@ const Dashboard: React.FC = () => {
 
         {/* Recommendation Card */}
         <section className="card recommendation-card">
-          <h3 className="recommendation-title">Cloth Recommendation</h3>
+          <h3 className="recommendation-title">
+            Cloth Recommendation 
+            <span style={{fontSize: '0.8em', fontWeight: 'normal', color: '#666', marginLeft: '10px'}}>
+              ({uvAdvice.dataSource})
+            </span>
+          </h3>
           <div className="recommendation-list">
-            {recommendations.map((item, index) => (
+            {uvAdvice.clothingAdvice.items.map((item, index) => (
               <div key={index} className="rec-item">
                 <div className="rec-icon-box">{item.icon}</div>
                 <div className="rec-text-content">
-                  <div className="rec-main-text">{item.text}</div>
+                  <div className="rec-main-text">
+                    {item.text}
+                    {item.intensity && (
+                      <span className="intensity-tag" style={{
+                        fontSize: '0.7em', 
+                        marginLeft: '8px', 
+                        padding: '2px 6px', 
+                        borderRadius: '4px', 
+                        background: item.intensity === 'Professional' ? '#ffeb3b' : '#eee',
+                        color: '#333'
+                      }}>
+                        {item.intensity}
+                      </span>
+                    )}
+                  </div>
                   <div className="rec-desc-text">{item.desc}</div>
+                  {item.specs && (
+                    <div className="rec-specs" style={{fontSize: '0.75rem', color: '#888', marginTop: '2px'}}>
+                       {Object.entries(item.specs).map(([key, val]) => `${key}: ${val}`).join(' • ')}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
