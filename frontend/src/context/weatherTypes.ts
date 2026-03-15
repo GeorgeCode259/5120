@@ -5,6 +5,7 @@ export interface WeatherData {
     temp: number;
     sunrise: number;
     sunset: number;
+    timezone: number;
     weather: {
       id: number;
       main: string;
@@ -32,6 +33,7 @@ export const defaultWeatherData: WeatherData = {
     temp: 0,
     sunrise: Math.floor(Date.now() / 1000),
     sunset: Math.floor(Date.now() / 1000),
+    timezone: 0,
     weather: {
       id: 800,
       main: 'Clear',

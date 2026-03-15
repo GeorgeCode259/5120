@@ -69,8 +69,9 @@ const Dashboard: React.FC = () => {
   };
 
   const formatTime = (timestamp: number) => {
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    const offset = weatherData.current.timezone;
+    const date = new Date((timestamp + offset) * 1000);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC' });
   };
 
   const getClothingRecommendations = (uv: number) => {
@@ -152,6 +153,8 @@ const Dashboard: React.FC = () => {
   const showLoading = loading || !isDataReady;
   const recommendations = getClothingRecommendations(current.uv);
 
+  const localTime = new Date(currentTime.getTime() + current.timezone * 1000);
+
   return (
     <div className="dashboard-container">
       {showLoading && (
@@ -166,8 +169,8 @@ const Dashboard: React.FC = () => {
         {/* City Card */}
         <section className="card city-card">
           <h2 className="city-name">{weatherData.name}</h2>
-          <div className="time">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-          <div className="date">{currentTime.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })}</div>
+          <div className="time">{localTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC' })}</div>
+          <div className="date">{localTime.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })}</div>
         </section>
 
         {/* UV & Weather Card */}
