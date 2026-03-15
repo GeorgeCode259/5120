@@ -19,6 +19,9 @@
 
 .awareness-card {
   background-color: $card-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: $glass-border;
   border-radius: $border-radius-lg;
   padding: 30px;
   box-shadow: $box-shadow;

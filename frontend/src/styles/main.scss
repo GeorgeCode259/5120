@@ -2,6 +2,10 @@
 @import 'navbar';
 @import 'uv-awareness';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +13,26 @@ body {
   background-color: $bg-color;
   color: $text-primary;
   min-height: 100vh;
+}
+
+// Background Video
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-container {
@@ -38,19 +62,23 @@ body {
     flex: 1;
     max-width: 600px;
     position: relative;
+    margin: 0 auto; // Center the search container
 
     .search-input {
       width: 100%;
-      padding: 12px 20px 12px 45px;
-      border-radius: $border-radius-lg;
-      border: 1px solid #ddd;
-      background-color: #f0f0f0;
+      height: 48px; // Google-like height
+      padding: 0 20px 0 45px; // Adjust padding for height
+      border-radius: 24px; // Pill shape
+      border: 1px solid #dfe1e5; // Google-like border
+      background-color: #ffffff; // White background
       font-size: 16px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); // Google-like shadow
+      transition: all 0.3s ease; // Smooth transition
 
-      &:focus {
+      &:hover, &:focus {
         outline: none;
-        border-color: #bbb;
+        box-shadow: 0 2px 8px 1px rgba(32, 33, 36, 0.28); // Stronger shadow on hover/focus
+        border-color: transparent; // Hide border on focus/hover if desired, or keep it
       }
     }
 
@@ -99,6 +127,9 @@ body {
 // Cards
 .card {
   background-color: $card-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: $glass-border;
   border-radius: $border-radius-lg;
   padding: 30px;
   box-shadow: $box-shadow;
@@ -359,51 +390,20 @@ body {
         font-size: 14px;
       }
 
-/* Loading Overlay */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  flex-direction: column;
-
-  .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 20px;
-  }
-
-  .loading-text {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
+      input {
+        width: 100%;
+        padding: 12px;
         border-radius: $border-radius-md;
-        border: 1px solid #ddd;
-        background-color: white;
+        border: $glass-border;
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: $glass-blur;
         font-size: 16px;
         box-sizing: border-box;
 
         &:focus {
           outline: none;
-          border-color: #bbb;
+          border-color: rgba(255, 255, 255, 0.9);
+          background-color: rgba(255, 255, 255, 0.9);
         }
       }
     }
@@ -488,5 +488,4 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-
+}

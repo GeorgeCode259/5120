@@ -1,10 +1,14 @@
 // Colors
-$bg-color: #ffffff;
-$card-bg: #d9d9d9;
-$text-primary: #000000;
-$text-secondary: #666666;
+$bg-color: #f5f7fa; // Will be covered by video, but good as fallback
+$card-bg: rgba(255, 255, 255, 0.65);
+$text-primary: #111111;
+$text-secondary: #444444;
 $accent-color: #8c8c8c;
-$shadow-color: rgba(0, 0, 0, 0.1);
+$shadow-color: rgba(0, 0, 0, 0.15);
+
+// Glassmorphism
+$glass-border: 1px solid rgba(255, 255, 255, 0.5);
+$glass-blur: blur(12px);
 
 // Border Radius
 $border-radius-lg: 32px;
@@ -14,4 +18,4 @@ $border-radius-md: 16px;
 $spacing-unit: 8px;
 
 // Shadows
-$box-shadow: 0 4px 15px $shadow-color;
+$box-shadow: 0 8px 32px $shadow-color;
