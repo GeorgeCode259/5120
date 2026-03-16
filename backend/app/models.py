@@ -76,3 +76,19 @@ class Review(db.Model):
             "product_id": self.product_id
         }
 
+
+class CancerIncidence(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cancer_type = db.Column(db.String(255), nullable=False, index=True)
+    year = db.Column(db.Integer, nullable=False, index=True)
+    count = db.Column(db.Float, nullable=True)  # Using Float as count might be estimated or average
+    asr = db.Column(db.Float, nullable=True)    # Age-standardised rate
+
+    def to_dict(self):
+        return {
+            "cancerType": self.cancer_type,
+            "year": self.year,
+            "count": self.count,
+            "asr": self.asr
+        }
+

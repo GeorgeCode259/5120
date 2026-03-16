@@ -1,0 +1,42 @@
+name: Deploy and Migrate
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install psycopg2-binary
+
+      - name: Run Database Migrations
+        working-directory: ./backend
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          FLASK_APP: app
+        run: |
+          flask db upgrade
+
+      - name: Seed Database (Optional)
+        working-directory: ./backend
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          FLASK_APP: app
+        run: |
+          # Only run if needed. You might want to remove this after first run.
+          python seed_cancer_data.py

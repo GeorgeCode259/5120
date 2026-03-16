@@ -1,4 +1,6 @@
 import React from 'react';
+import SkinCancerChart from '../components/SkinCancerChart';
+import CancerIncidenceChart from '../components/CancerIncidenceChart';
 
 const UVAwareness: React.FC = () => {
   return (
@@ -12,26 +14,7 @@ const UVAwareness: React.FC = () => {
           <p>Australia has one of the highest rates of skin cancer in the world.</p>
           
           <div className="chart-visual">
-            <div className="bar-chart">
-              <div className="bar-item">
-                <span className="bar-label">Melanoma</span>
-                <div className="bar-track">
-                  <div className="bar-fill high" style={{ width: '80%' }}>High Risk</div>
-                </div>
-              </div>
-              <div className="bar-item">
-                <span className="bar-label">BCC</span>
-                <div className="bar-track">
-                  <div className="bar-fill medium" style={{ width: '60%' }}>Common</div>
-                </div>
-              </div>
-              <div className="bar-item">
-                <span className="bar-label">SCC</span>
-                <div className="bar-track">
-                  <div className="bar-fill medium" style={{ width: '45%' }}>Common</div>
-                </div>
-              </div>
-            </div>
+            <SkinCancerChart />
           </div>
           <p className="protection-info-text">
             2 in 3 Australians will be diagnosed with skin cancer by the age of 70.
@@ -78,6 +61,15 @@ const UVAwareness: React.FC = () => {
                 <span className="label">UV {item.level}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Cancer Incidence Trends Chart */}
+        <div className="awareness-card" style={{ gridColumn: '1 / -1' }}>
+          <h2>Cancer Incidence Trends</h2>
+          <p>Explore cancer incidence data over time. Use the controls to filter by cancer type, year range, and metric.</p>
+          <div className="chart-visual" style={{ marginTop: '20px' }}>
+            <CancerIncidenceChart />
           </div>
         </div>
       </div>

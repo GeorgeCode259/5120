@@ -2,8 +2,16 @@ import os
 import requests
 from flask import jsonify, current_app, request
 
-from ...models import Product
+from ...models import Product, CancerIncidence
 from . import bp
+
+
+@bp.get("/cancer-incidence")
+def get_cancer_incidence():
+    # Fetch all records from the database
+    # Ordering by cancer_type and year to match previous JSON structure logic if needed
+    records = CancerIncidence.query.order_by(CancerIncidence.cancer_type, CancerIncidence.year).all()
+    return jsonify([record.to_dict() for record in records])
 
 
 @bp.get("/weather/uv")
