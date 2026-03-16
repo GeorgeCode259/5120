@@ -10,7 +10,7 @@ __version__ = "0.1.0"
 
 from .cli import register_cli
 from .config import DevelopmentConfig, ProductionConfig
-from .extensions import cors, db, jwt, migrate
+from .extensions import cors, db, jwt, limiter, migrate
 
 
 def _coerce_database_url(url: str) -> str:
@@ -43,6 +43,7 @@ def create_app() -> Flask:
     migrate.init_app(app, db)
     jwt.init_app(app)
     cors.init_app(app)
+    limiter.init_app(app)
 
     from .blueprints.auth import bp as auth_bp
     from .blueprints.main import bp as main_bp

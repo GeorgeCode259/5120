@@ -3,6 +3,8 @@ import requests
 from flask import jsonify, current_app, request
 
 from ...models import Product, CancerIncidence
+from ...extensions import limiter
+from ...utils.validation import validate_input
 from . import bp
 
 
@@ -15,6 +17,8 @@ def get_cancer_incidence():
 
 
 @bp.get("/weather/uv")
+@limiter.limit("50 per second")
+@validate_input
 def get_weather_uv():
     api_key = current_app.config.get("OPENWEATHER_API_KEY")
     if not api_key:
