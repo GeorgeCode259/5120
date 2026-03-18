@@ -35,6 +35,7 @@ const Dashboard: React.FC = () => {
     const q = searchParams.get('q');
     const lat = searchParams.get('lat');
     const lon = searchParams.get('lon');
+    const name = searchParams.get('name');
 
     // If we are waiting for location from Home page, don't fetch default weather
     if (location.state?.requestLocation && !lat && !lon) {
@@ -42,9 +43,11 @@ const Dashboard: React.FC = () => {
     }
 
     if (q) {
-      fetchWeather(undefined, undefined, q);
+      // Use the query as the name if direct search
+      const displayName = q.charAt(0).toUpperCase() + q.slice(1);
+      fetchWeather(undefined, undefined, q, displayName);
     } else if (lat && lon) {
-      fetchWeather(lat, lon);
+      fetchWeather(lat, lon, undefined, name || undefined);
     } else {
       // Only fetch default if we don't have valid data
       if (weatherData.name === '--') {

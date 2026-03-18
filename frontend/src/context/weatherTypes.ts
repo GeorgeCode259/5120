@@ -58,6 +58,6 @@ export interface WeatherContextType {
   weatherData: WeatherData;
   loading: boolean;
   error: string | null;
-  fetchWeather: (lat?: string, lon?: string, q?: string) => Promise<void>;
+  fetchWeather: (lat?: string, lon?: string, q?: string, name?: string) => Promise<void>;
   lastUpdated: number | null;
 }

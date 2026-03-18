@@ -12,8 +12,8 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [lastUpdated, setLastUpdated] = useState<number | null>(null);
   const [lastParams, setLastParams] = useState<string | null>(null);
 
-  const fetchWeather = useCallback(async (lat?: string, lon?: string, q?: string) => {
-    const currentParams = q ? `q=${q}` : `lat=${lat}&lon=${lon}`;
+  const fetchWeather = useCallback(async (lat?: string, lon?: string, q?: string, name?: string) => {
+    const currentParams = q ? `q=${q}` : `lat=${lat}&lon=${lon}&name=${name || ''}`;
     
     // Check if we can use cached data (5 minutes cache)
     if (
@@ -34,6 +34,10 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
       } else if (lat !== undefined && lon !== undefined) {
         params.append('lat', lat);
         params.append('lon', lon);
+      }
+      
+      if (name) {
+        params.append('name', name);
       }
       
       const queryString = params.toString();

@@ -1,11 +1,91 @@
 import os
 import requests
 from flask import jsonify, current_app, request
+from functools import lru_cache
 
 from ...models import Product, CancerIncidence
 from ...extensions import limiter
 from ...utils.validation import validate_input
 from . import bp
+
+
+@lru_cache(maxsize=1024)
+def fetch_location_from_nominatim(query: str):
+    """
+    Fetch location data from OpenStreetMap Nominatim API.
+    Cached to handle high concurrency and ensure response < 500ms for frequent queries.
+    """
+    # Accept-Language helps with multi-language input support
+    url = "https://nominatim.openstreetmap.org/search"
+    params = {
+        "q": query,
+        "countrycodes": "au",
+        "format": "json",
+        "addressdetails": 1,
+        "limit": 5
+    }
+    headers = {
+        "User-Agent": "SunSafety-App/1.0 (Student Project)",
+        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7"
+    }
+    
+    try:
+        response = requests.get(url, params=params, headers=headers, timeout=5)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        print(f"Geocoding error: {e}")
+        return None
+
+@bp.get("/location/search")
+@limiter.limit("20 per minute")
+def search_location():
+    """
+    Intelligent Australian Place Name Recognition and Geolocation System
+    - Supports fuzzy matching and aliases.
+    - Returns structured geographic data: full address, admin hierarchy, coordinates, bounding box.
+    """
+    q = request.args.get('q', '').strip()
+    if not q:
+        return jsonify({"error": "Query parameter 'q' is required"}), 400
+
+    data = fetch_location_from_nominatim(q)
+    
+    if data is None:
+        return jsonify({"error": "Failed to fetch location data"}), 500
+        
+    if not data:
+        return jsonify([]), 200
+
+    results = []
+    for item in data:
+        address = item.get("address", {})
+        
+        # Parse administrative hierarchy
+        state = address.get("state", "")
+        city = address.get("city", address.get("town", address.get("village", address.get("county", ""))))
+        suburb = address.get("suburb", address.get("neighbourhood", ""))
+        street = address.get("road", "")
+        postcode = address.get("postcode", "")
+        
+        results.append({
+            "place_id": item.get("place_id"),
+            "full_address": item.get("display_name"),
+            "administrative_units": {
+                "state": state,
+                "city": city,
+                "suburb": suburb,
+                "street": street,
+                "postcode": postcode
+            },
+            "coordinates": {
+                "lat": float(item.get("lat")),
+                "lon": float(item.get("lon"))
+            },
+            "bounding_box": item.get("boundingbox") # [latMin, latMax, lonMin, lonMax]
+        })
+
+    return jsonify(results)
 
 
 @bp.get("/cancer-incidence")
@@ -27,6 +107,7 @@ def get_weather_uv():
     q = request.args.get('q')
     lat = request.args.get('lat', type=float)
     lon = request.args.get('lon', type=float)
+    override_name = request.args.get('name')
 
     if q:
         # If city name is provided, get coordinates first
@@ -69,7 +150,7 @@ def get_weather_uv():
                 uv_value = uv_data['current']['uv_index']
         
         return jsonify({
-            "name": weather_data["name"],
+            "name": override_name if override_name else weather_data["name"],
             "current": {
                 "uv": uv_value,
                 "temp": weather_data["main"]["temp"],
