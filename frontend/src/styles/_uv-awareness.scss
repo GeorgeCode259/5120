@@ -8,6 +8,21 @@
     font-weight: 800;
     margin-bottom: 40px;
     text-align: center;
+
+    // Glassmorphism card style
+    background-color: $card-bg;
+    backdrop-filter: $glass-blur;
+    -webkit-backdrop-filter: $glass-blur;
+    border: $glass-border;
+    border-radius: $border-radius-lg;
+    padding: 20px;
+    box-shadow: $box-shadow;
+    color: #000000;
+    
+    // Align with other cards
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .awareness-grid {
@@ -121,6 +136,14 @@
       &.short-term h3 { color: #ff9800; }
       &.long-term h3 { color: #f44336; }
     }
+  }
+
+  .protection-info-text {
+    font-size: 16px; // Increased by 2 sizes (from typical 14px or inherited 13px)
+    line-height: 1.5;
+    color: $text-secondary;
+    font-weight: 600;
+    margin-top: 15px;
   }
 
   .risk-visual {

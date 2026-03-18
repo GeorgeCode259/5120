@@ -49,12 +49,11 @@ const Dashboard: React.FC = () => {
     } else if (lat && lon) {
       fetchWeather(lat, lon, undefined, name || undefined);
     } else {
-      // Only fetch default if we don't have valid data
-      if (weatherData.name === '--') {
-        fetchWeather();
-      }
+      // Fetch default weather (Melbourne) when navigating to /dashboard without params.
+      // If already cached, WeatherContext will return it instantly without loading.
+      fetchWeather();
     }
-  }, [location.search, fetchWeather, location.state, weatherData.name]);
+  }, [location.search, fetchWeather, location.state]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -89,16 +88,17 @@ const Dashboard: React.FC = () => {
   const localTime = new Date(currentTime.getTime() + current.timezone * 1000);
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-wrapper" style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column', width: '100%' }}>
       {showLoading && (
         <div className="loading-overlay">
           <div className="loading-spinner"></div>
           <div className="loading-text">Loading...</div>
         </div>
       )}
-      {/* Main Grid - Only show if we have data (even if loading new data, we can show old data behind overlay) */}
-      {isDataReady && (
-      <main className="dashboard-grid">
+      <div className="dashboard-container" style={{ flex: 1, width: '100%' }}>
+        {/* Main Grid - Only show if we have data (even if loading new data, we can show old data behind overlay) */}
+        {isDataReady && (
+        <main className="dashboard-grid">
         {/* City Card */}
         <section className="card city-card">
           <h2 className="city-name">{weatherData.name}</h2>
@@ -247,6 +247,7 @@ const Dashboard: React.FC = () => {
         </section>
       </main>
       )}
+      </div>
     </div>
   );
 };

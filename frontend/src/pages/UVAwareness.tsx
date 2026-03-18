@@ -58,6 +58,9 @@ const UVAwareness: React.FC = () => {
           <div className="chart-visual" style={{ marginTop: '20px' }}>
             <SkinCancerChart />
           </div>
+          <p className="protection-info-text">
+            UV exposure has a direct impact on skin health. Explore how melanoma rates have changed across Australia over time.
+          </p>
         </div>
       </div>
     </div>

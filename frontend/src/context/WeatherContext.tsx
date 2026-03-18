@@ -11,8 +11,10 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<number | null>(null);
   const [lastParams, setLastParams] = useState<string | null>(null);
+  const [defaultWeatherDataCache, setDefaultWeatherDataCache] = useState<{data: WeatherData, timestamp: number} | null>(null);
 
   const fetchWeather = useCallback(async (lat?: string, lon?: string, q?: string, name?: string) => {
+    const isDefaultRequest = !lat && !lon && !q;
     const currentParams = q ? `q=${q}` : `lat=${lat}&lon=${lon}&name=${name || ''}`;
     
     // Check if we can use cached data (5 minutes cache)
@@ -22,6 +24,14 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
       lastUpdated && 
       Date.now() - lastUpdated < 5 * 60 * 1000
     ) {
+      return;
+    }
+
+    if (isDefaultRequest && defaultWeatherDataCache) {
+      setWeatherData(defaultWeatherDataCache.data);
+      setLastUpdated(defaultWeatherDataCache.timestamp);
+      setLastParams(currentParams);
+      setError(null);
       return;
     }
 
@@ -50,6 +60,10 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
       setLastUpdated(Date.now());
       setLastParams(currentParams);
       setError(null);
+
+      if (isDefaultRequest) {
+        setDefaultWeatherDataCache({ data: response.data, timestamp: Date.now() });
+      }
     } catch (err: unknown) {
       console.error('Error fetching weather:', err);
       let errorMessage = 'Failed to fetch weather data.';
@@ -61,7 +75,7 @@ export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children })
     } finally {
       setLoading(false);
     }
-  }, [weatherData, lastUpdated, lastParams]);
+  }, [weatherData, lastUpdated, lastParams, defaultWeatherDataCache]);
 
   return (
     <WeatherContext.Provider value={{ weatherData, loading, error, fetchWeather, lastUpdated }}>

@@ -1,4 +1,3 @@
-import os
 import requests
 from flask import jsonify, current_app, request
 from functools import lru_cache
@@ -10,29 +9,68 @@ from . import bp
 
 
 @lru_cache(maxsize=1024)
-def fetch_location_from_nominatim(query: str):
+def fetch_location_from_photon(query: str):
     """
-    Fetch location data from OpenStreetMap Nominatim API.
+    Fetch location data from Photon API (based on OpenStreetMap).
+    Photon supports partial word matching (autocomplete/prefix search) which Nominatim lacks.
     Cached to handle high concurrency and ensure response < 500ms for frequent queries.
     """
-    # Accept-Language helps with multi-language input support
-    url = "https://nominatim.openstreetmap.org/search"
+    url = "https://photon.komoot.io/api/"
     params = {
         "q": query,
-        "countrycodes": "au",
-        "format": "json",
-        "addressdetails": 1,
-        "limit": 5
+        "limit": 15, # Fetch more to allow for custom sorting and filtering
+        "bbox": "112.9,-43.6,153.6,-10.6" # Bounding box for Australia
     }
     headers = {
-        "User-Agent": "SunSafety-App/1.0 (Student Project)",
-        "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7"
+        "User-Agent": "SunSafety-App/1.0 (Student Project)"
     }
     
     try:
         response = requests.get(url, params=params, headers=headers, timeout=5)
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        
+        # Double check countrycode just in case bbox catches some nearby islands
+        au_results = []
+        for feature in data.get("features", []):
+            props = feature.get("properties", {})
+            if props.get("countrycode") == "AU":
+                au_results.append(feature)
+                
+        # Custom sorting logic to prioritize exact matches and actual places
+        def get_score(feature):
+            props = feature.get("properties", {})
+            name = props.get("name", "").lower()
+            q = query.lower()
+            
+            score = 0
+            # Name match scoring
+            if name == q:
+                score += 100
+            elif name.startswith(q):
+                score += 80
+            elif q in name:
+                score += 50
+            else:
+                score += 10
+                
+            # Place type scoring (prefer cities, suburbs over buildings)
+            osm_key = props.get("osm_key", "")
+            osm_value = props.get("osm_value", "")
+            
+            if osm_key == "place":
+                if osm_value in ["city", "town", "suburb", "neighbourhood", "village", "state"]:
+                    score += 20
+                else:
+                    score += 10
+            elif osm_key in ["leisure", "building", "amenity", "office"]:
+                score -= 5
+                
+            return score
+            
+        au_results.sort(key=get_score, reverse=True)
+                
+        return au_results[:5] # Return top 5 best matches
     except Exception as e:
         print(f"Geocoding error: {e}")
         return None
@@ -42,14 +80,14 @@ def fetch_location_from_nominatim(query: str):
 def search_location():
     """
     Intelligent Australian Place Name Recognition and Geolocation System
-    - Supports fuzzy matching and aliases.
+    - Supports prefix matching and autocomplete via Photon API.
     - Returns structured geographic data: full address, admin hierarchy, coordinates, bounding box.
     """
     q = request.args.get('q', '').strip()
     if not q:
         return jsonify({"error": "Query parameter 'q' is required"}), 400
 
-    data = fetch_location_from_nominatim(q)
+    data = fetch_location_from_photon(q)
     
     if data is None:
         return jsonify({"error": "Failed to fetch location data"}), 500
@@ -59,18 +97,44 @@ def search_location():
 
     results = []
     for item in data:
-        address = item.get("address", {})
+        props = item.get("properties", {})
+        coords = item.get("geometry", {}).get("coordinates", [0, 0])
         
         # Parse administrative hierarchy
-        state = address.get("state", "")
-        city = address.get("city", address.get("town", address.get("village", address.get("county", ""))))
-        suburb = address.get("suburb", address.get("neighbourhood", ""))
-        street = address.get("road", "")
-        postcode = address.get("postcode", "")
+        state = props.get("state", "")
+        city = props.get("city", props.get("county", ""))
+        suburb = props.get("district", props.get("locality", ""))
+        street = props.get("street", "")
+        postcode = props.get("postcode", "")
         
+        # Build a display name similar to Nominatim
+        address_parts = [props.get("name")]
+        if street: address_parts.append(street)
+        if suburb: address_parts.append(suburb)
+        if city: address_parts.append(city)
+        if state: address_parts.append(state)
+        
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_parts = []
+        for p in address_parts:
+            if p and p not in seen:
+                seen.add(p)
+                unique_parts.append(p)
+                
+        full_address = ", ".join(unique_parts)
+        
+        # Photon extent format: [minLon, minLat, maxLon, maxLat]
+        # Our app expects boundingbox like Nominatim: [latMin, latMax, lonMin, lonMax]
+        extent = props.get("extent")
+        if extent and len(extent) == 4:
+            bounding_box = [str(extent[1]), str(extent[3]), str(extent[0]), str(extent[2])]
+        else:
+            bounding_box = None
+            
         results.append({
-            "place_id": item.get("place_id"),
-            "full_address": item.get("display_name"),
+            "place_id": str(props.get("osm_id", "")),
+            "full_address": full_address,
             "administrative_units": {
                 "state": state,
                 "city": city,
@@ -79,10 +143,10 @@ def search_location():
                 "postcode": postcode
             },
             "coordinates": {
-                "lat": float(item.get("lat")),
-                "lon": float(item.get("lon"))
+                "lat": float(coords[1]), # Photon returns [lon, lat]
+                "lon": float(coords[0])
             },
-            "bounding_box": item.get("boundingbox") # [latMin, latMax, lonMin, lonMax]
+            "bounding_box": bounding_box
         })
 
     return jsonify(results)
