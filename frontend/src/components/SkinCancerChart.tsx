@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +11,7 @@ import {
 } from 'chart.js';
 import type { ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import api from '../api/axios';
+import melanomaData from '../data/melanomaByState.json';
 
 ChartJS.register(
   CategoryScale,
@@ -24,37 +24,30 @@ ChartJS.register(
 );
 
 interface CancerData {
-  cancerType: string;
+  state: string;
   year: number;
-  count: number | null;
   asr: number | null;
 }
 
 const SkinCancerChart: React.FC = () => {
-  const [cancerData, setCancerData] = useState<CancerData[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [selectedState, setSelectedState] = useState('Australia');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await api.get('/cancer-incidence');
-        setCancerData(response.data);
-      } catch (error) {
-        console.error('Error fetching cancer data for SkinCancerChart:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const states = [
+    'Australia', 'Queensland', 'New South Wales', 'Victoria', 'Western Australia',
+    'South Australia', 'Tasmania', 'Australian Capital Territory', 'Northern Territory'
+  ];
+  
+  const stateLabels: {[key: string]: string} = {
+    'Australian Capital Territory': 'ACT',
+    'Northern Territory': 'NT'
+  };
 
-  // Filter data for Melanoma
+  // Filter data for selected state
   const chartData = useMemo(() => {
-    return cancerData.filter(item => 
-      item.cancerType === "Melanoma of the skin"
-    );
-  }, [cancerData]);
+    return (melanomaData as CancerData[])
+      .filter(item => item.state === selectedState)
+      .sort((a, b) => a.year - b.year);
+  }, [selectedState]);
 
   const data = {
     labels: chartData.map(item => item.year),
@@ -68,18 +61,7 @@ const SkinCancerChart: React.FC = () => {
         tension: 0.1,
         pointRadius: 3,
         pointHoverRadius: 6,
-      },
-      {
-        label: 'Total cases',
-        data: chartData.map(item => item.count),
-        borderColor: '#EA4335', // Red
-        backgroundColor: '#EA4335',
-        yAxisID: 'y1',
-        borderDash: [5, 5], // Dashed line
-        tension: 0.1,
-        pointRadius: 3,
-        pointHoverRadius: 6,
-      },
+      }
     ],
   };
 
@@ -104,7 +86,7 @@ const SkinCancerChart: React.FC = () => {
       },
       title: {
         display: true,
-        text: 'Skin Cancer Statistics (Melanoma)',
+        text: `Melanoma Incidence Rate in ${stateLabels[selectedState] || selectedState}`,
         font: {
           size: 16,
           weight: 'bold',
@@ -121,7 +103,11 @@ const SkinCancerChart: React.FC = () => {
         borderColor: '#ddd',
         borderWidth: 1,
         padding: 10,
-        boxPadding: 4
+        boxPadding: 4,
+        callbacks: {
+            title: (items) => `Year: ${items[0].label}`,
+            label: (item) => `Rate: ${item.formattedValue} per 100,000 people`
+        }
       }
     },
     scales: {
@@ -141,7 +127,7 @@ const SkinCancerChart: React.FC = () => {
         position: 'left' as const,
         title: {
           display: true,
-          text: 'Rate per 100,000',
+          text: 'Rate per 100,000 people',
           font: {
             family: "'Inter', sans-serif",
             weight: 'bold'
@@ -150,46 +136,56 @@ const SkinCancerChart: React.FC = () => {
         grid: {
           color: 'rgba(0, 0, 0, 0.05)'
         }
-      },
-      y1: {
-        type: 'linear' as const,
-        display: true,
-        position: 'right' as const,
-        title: {
-          display: true,
-          text: 'Total cases',
-          font: {
-            family: "'Inter', sans-serif",
-            weight: 'bold'
-          }
-        },
-        grid: {
-          drawOnChartArea: false,
-        },
-      },
+      }
     },
   };
 
   return (
-    <div className="chart-container" style={{ width: '100%', height: '400px', position: 'relative' }}>
-      {loading ? (
-        <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div className="spinner" style={{ width: '40px', height: '40px', border: '4px solid #f3f3f3', borderTop: '4px solid #4285F4', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+    <div className="chart-container" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      
+      <div className="chart-header">
+        <p style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#555' }}>
+          Select a state or territory to view its melanoma incidence trend.
+        </p>
+        
+        <div className="state-tabs" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {states.map(state => (
+            <button
+              key={state}
+              onClick={() => setSelectedState(state)}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '20px',
+                border: '1px solid #ddd',
+                background: selectedState === state ? '#fff' : '#f5f5f5',
+                color: '#333',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: selectedState === state ? '600' : '400',
+                boxShadow: selectedState === state ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
+                transition: 'all 0.2s'
+              }}
+            >
+              {stateLabels[state] || state}
+            </button>
+          ))}
         </div>
-      ) : (
-        <>
-          <Line options={options as any} data={data} />
-          <div className="chart-source" style={{ 
-            textAlign: 'right', 
-            fontSize: '10px', 
-            color: '#888', 
-            marginTop: '10px',
-            fontStyle: 'italic'
-          }}>
-            Source: AIHW Cancer Data in Australia 2023
-          </div>
-        </>
-      )}
+      </div>
+
+      <div style={{ height: '400px', position: 'relative' }}>
+        <Line options={options as any} data={data} />
+      </div>
+      
+      <div className="chart-source" style={{ 
+        textAlign: 'left', 
+        fontSize: '12px', 
+        color: '#666', 
+        marginTop: '10px',
+        borderTop: '1px solid #eee',
+        paddingTop: '10px'
+      }}>
+        Source: AIHW Cancer Data in Australia 2025. Melanoma of the skin, all persons.
+      </div>
     </div>
   );
 };

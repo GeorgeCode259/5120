@@ -1,6 +1,6 @@
 import React from 'react';
 import SkinCancerChart from '../components/SkinCancerChart';
-import CancerIncidenceChart from '../components/CancerIncidenceChart';
+import UvIndexChart from '../components/UvIndexChart';
 
 const UVAwareness: React.FC = () => {
   return (
@@ -8,16 +8,16 @@ const UVAwareness: React.FC = () => {
       <h1>UV Awareness & Skin Health</h1>
 
       <div className="awareness-grid">
-        {/* Skin Cancer Statistics Card */}
+        {/* UV Index Chart (Chart 2) */}
         <div className="awareness-card">
-          <h2>Skin Cancer Statistics</h2>
-          <p>Australia has one of the highest rates of skin cancer in the world.</p>
+          <h2>UV Index Monthly Variation (2021)</h2>
+          <p>Monthly average peak UV index across major Australian cities.</p>
           
           <div className="chart-visual">
-            <SkinCancerChart />
+            <UvIndexChart />
           </div>
           <p className="protection-info-text">
-            2 in 3 Australians will be diagnosed with skin cancer by the age of 70.
+            UV levels are generally highest in summer (Dec-Feb) and lowest in winter (Jun-Aug). Northern cities like Darwin maintain high UV levels year-round.
           </p>
         </div>
 
@@ -64,12 +64,11 @@ const UVAwareness: React.FC = () => {
           </div>
         </div>
 
-        {/* Cancer Incidence Trends Chart */}
+        {/* Melanoma Trend Chart (Chart 1) */}
         <div className="awareness-card" style={{ gridColumn: '1 / -1' }}>
-          <h2>Cancer Incidence Trends</h2>
-          <p>Explore cancer incidence data over time. Use the controls to filter by cancer type, year range, and metric.</p>
+          <h2>Melanoma Incidence Trends</h2>
           <div className="chart-visual" style={{ marginTop: '20px' }}>
-            <CancerIncidenceChart />
+            <SkinCancerChart />
           </div>
         </div>
       </div>

@@ -1,0 +1,1847 @@
+[
+  {
+    "state": "Australia",
+    "year": 1982,
+    "asr": 26.9
+  },
+  {
+    "state": "Australia",
+    "year": 1983,
+    "asr": 28.2
+  },
+  {
+    "state": "Australia",
+    "year": 1984,
+    "asr": 29.8
+  },
+  {
+    "state": "Australia",
+    "year": 1985,
+    "asr": 32.3
+  },
+  {
+    "state": "Australia",
+    "year": 1986,
+    "asr": 33.1
+  },
+  {
+    "state": "Australia",
+    "year": 1987,
+    "asr": 37.9
+  },
+  {
+    "state": "Australia",
+    "year": 1988,
+    "asr": 40.4
+  },
+  {
+    "state": "Australia",
+    "year": 1989,
+    "asr": 37.5
+  },
+  {
+    "state": "Australia",
+    "year": 1990,
+    "asr": 37.9
+  },
+  {
+    "state": "Australia",
+    "year": 1991,
+    "asr": 37.8
+  },
+  {
+    "state": "Australia",
+    "year": 1992,
+    "asr": 40.8
+  },
+  {
+    "state": "Australia",
+    "year": 1993,
+    "asr": 41.5
+  },
+  {
+    "state": "Australia",
+    "year": 1994,
+    "asr": 41.8
+  },
+  {
+    "state": "Australia",
+    "year": 1995,
+    "asr": 44.0
+  },
+  {
+    "state": "Australia",
+    "year": 1996,
+    "asr": 45.3
+  },
+  {
+    "state": "Australia",
+    "year": 1997,
+    "asr": 47.7
+  },
+  {
+    "state": "Australia",
+    "year": 1998,
+    "asr": 44.4
+  },
+  {
+    "state": "Australia",
+    "year": 1999,
+    "asr": 45.6
+  },
+  {
+    "state": "Australia",
+    "year": 2000,
+    "asr": 46.4
+  },
+  {
+    "state": "Australia",
+    "year": 2001,
+    "asr": 46.8
+  },
+  {
+    "state": "Australia",
+    "year": 2002,
+    "asr": 50.2
+  },
+  {
+    "state": "Australia",
+    "year": 2003,
+    "asr": 48.0
+  },
+  {
+    "state": "Australia",
+    "year": 2004,
+    "asr": 48.3
+  },
+  {
+    "state": "Australia",
+    "year": 2005,
+    "asr": 52.0
+  },
+  {
+    "state": "Australia",
+    "year": 2006,
+    "asr": 49.0
+  },
+  {
+    "state": "Australia",
+    "year": 2007,
+    "asr": 47.8
+  },
+  {
+    "state": "Australia",
+    "year": 2008,
+    "asr": 49.8
+  },
+  {
+    "state": "Australia",
+    "year": 2009,
+    "asr": 49.4
+  },
+  {
+    "state": "Australia",
+    "year": 2010,
+    "asr": 48.9
+  },
+  {
+    "state": "Australia",
+    "year": 2011,
+    "asr": 48.2
+  },
+  {
+    "state": "Australia",
+    "year": 2012,
+    "asr": 49.5
+  },
+  {
+    "state": "Australia",
+    "year": 2013,
+    "asr": 50.9
+  },
+  {
+    "state": "Australia",
+    "year": 2014,
+    "asr": 51.1
+  },
+  {
+    "state": "Australia",
+    "year": 2015,
+    "asr": 51.9
+  },
+  {
+    "state": "Australia",
+    "year": 2016,
+    "asr": 53.8
+  },
+  {
+    "state": "Australia",
+    "year": 2017,
+    "asr": 54.1
+  },
+  {
+    "state": "Australia",
+    "year": 2018,
+    "asr": 53.5
+  },
+  {
+    "state": "Australia",
+    "year": 2019,
+    "asr": 54.0
+  },
+  {
+    "state": "Australia",
+    "year": 2020,
+    "asr": 49.2
+  },
+  {
+    "state": "Australia",
+    "year": 2021,
+    "asr": 49.0
+  },
+  {
+    "state": "Australia",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1982,
+    "asr": null
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1983,
+    "asr": null
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1984,
+    "asr": null
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1985,
+    "asr": null
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1986,
+    "asr": 29.3
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1987,
+    "asr": 33.9
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1988,
+    "asr": 37.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1989,
+    "asr": 37.8
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1990,
+    "asr": 38.8
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1991,
+    "asr": 37.8
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1992,
+    "asr": 36.3
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1993,
+    "asr": 33.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1994,
+    "asr": 33.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1995,
+    "asr": 35.2
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1996,
+    "asr": 35.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1997,
+    "asr": 38.5
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1998,
+    "asr": 39.7
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 1999,
+    "asr": 42.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2000,
+    "asr": 39.9
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2001,
+    "asr": 40.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2002,
+    "asr": 39.2
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2003,
+    "asr": 39.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2004,
+    "asr": 40.0
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2005,
+    "asr": 44.7
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2006,
+    "asr": 45.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2007,
+    "asr": 43.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2008,
+    "asr": 44.8
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2009,
+    "asr": 42.4
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2010,
+    "asr": 38.5
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2011,
+    "asr": 37.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2012,
+    "asr": 39.0
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2013,
+    "asr": 38.8
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2014,
+    "asr": 40.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2015,
+    "asr": 42.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2016,
+    "asr": 44.7
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2017,
+    "asr": 48.1
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2018,
+    "asr": 49.3
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2019,
+    "asr": 50.4
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2020,
+    "asr": 48.6
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2021,
+    "asr": 49.3
+  },
+  {
+    "state": "Australian Capital Territory",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "New South Wales",
+    "year": 1982,
+    "asr": 27.4
+  },
+  {
+    "state": "New South Wales",
+    "year": 1983,
+    "asr": 29.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 1984,
+    "asr": 31.6
+  },
+  {
+    "state": "New South Wales",
+    "year": 1985,
+    "asr": 32.7
+  },
+  {
+    "state": "New South Wales",
+    "year": 1986,
+    "asr": 34.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 1987,
+    "asr": 41.0
+  },
+  {
+    "state": "New South Wales",
+    "year": 1988,
+    "asr": 43.6
+  },
+  {
+    "state": "New South Wales",
+    "year": 1989,
+    "asr": 39.4
+  },
+  {
+    "state": "New South Wales",
+    "year": 1990,
+    "asr": 39.4
+  },
+  {
+    "state": "New South Wales",
+    "year": 1991,
+    "asr": 38.6
+  },
+  {
+    "state": "New South Wales",
+    "year": 1992,
+    "asr": 39.2
+  },
+  {
+    "state": "New South Wales",
+    "year": 1993,
+    "asr": 43.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 1994,
+    "asr": 41.4
+  },
+  {
+    "state": "New South Wales",
+    "year": 1995,
+    "asr": 40.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 1996,
+    "asr": 42.6
+  },
+  {
+    "state": "New South Wales",
+    "year": 1997,
+    "asr": 46.0
+  },
+  {
+    "state": "New South Wales",
+    "year": 1998,
+    "asr": 43.3
+  },
+  {
+    "state": "New South Wales",
+    "year": 1999,
+    "asr": 44.0
+  },
+  {
+    "state": "New South Wales",
+    "year": 2000,
+    "asr": 43.8
+  },
+  {
+    "state": "New South Wales",
+    "year": 2001,
+    "asr": 45.7
+  },
+  {
+    "state": "New South Wales",
+    "year": 2002,
+    "asr": 49.8
+  },
+  {
+    "state": "New South Wales",
+    "year": 2003,
+    "asr": 48.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2004,
+    "asr": 50.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2005,
+    "asr": 50.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 2006,
+    "asr": 50.3
+  },
+  {
+    "state": "New South Wales",
+    "year": 2007,
+    "asr": 48.6
+  },
+  {
+    "state": "New South Wales",
+    "year": 2008,
+    "asr": 48.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 2009,
+    "asr": 48.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 2010,
+    "asr": 49.9
+  },
+  {
+    "state": "New South Wales",
+    "year": 2011,
+    "asr": 50.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2012,
+    "asr": 51.2
+  },
+  {
+    "state": "New South Wales",
+    "year": 2013,
+    "asr": 51.7
+  },
+  {
+    "state": "New South Wales",
+    "year": 2014,
+    "asr": 51.4
+  },
+  {
+    "state": "New South Wales",
+    "year": 2015,
+    "asr": 50.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2016,
+    "asr": 54.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2017,
+    "asr": 54.7
+  },
+  {
+    "state": "New South Wales",
+    "year": 2018,
+    "asr": 54.7
+  },
+  {
+    "state": "New South Wales",
+    "year": 2019,
+    "asr": 54.8
+  },
+  {
+    "state": "New South Wales",
+    "year": 2020,
+    "asr": 51.1
+  },
+  {
+    "state": "New South Wales",
+    "year": 2021,
+    "asr": 50.3
+  },
+  {
+    "state": "New South Wales",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1982,
+    "asr": null
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1983,
+    "asr": null
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1984,
+    "asr": null
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1985,
+    "asr": null
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1986,
+    "asr": 11.9
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1987,
+    "asr": 12.8
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1988,
+    "asr": 17.0
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1989,
+    "asr": 17.7
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1990,
+    "asr": 20.9
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1991,
+    "asr": 24.4
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1992,
+    "asr": 30.2
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1993,
+    "asr": 28.6
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1994,
+    "asr": 29.8
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1995,
+    "asr": 28.1
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1996,
+    "asr": 28.7
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1997,
+    "asr": 26.2
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1998,
+    "asr": 26.6
+  },
+  {
+    "state": "Northern Territory",
+    "year": 1999,
+    "asr": 30.7
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2000,
+    "asr": 32.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2001,
+    "asr": 33.4
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2002,
+    "asr": 31.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2003,
+    "asr": 33.2
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2004,
+    "asr": 31.0
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2005,
+    "asr": 32.2
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2006,
+    "asr": 30.0
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2007,
+    "asr": 30.5
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2008,
+    "asr": 30.8
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2009,
+    "asr": 32.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2010,
+    "asr": 33.1
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2011,
+    "asr": 34.5
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2012,
+    "asr": 38.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2013,
+    "asr": 38.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2014,
+    "asr": 40.0
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2015,
+    "asr": 43.7
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2016,
+    "asr": 46.3
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2017,
+    "asr": 45.8
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2018,
+    "asr": 45.6
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2019,
+    "asr": 48.1
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2020,
+    "asr": 47.1
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2021,
+    "asr": 47.7
+  },
+  {
+    "state": "Northern Territory",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "Queensland",
+    "year": 1982,
+    "asr": 44.4
+  },
+  {
+    "state": "Queensland",
+    "year": 1983,
+    "asr": 42.6
+  },
+  {
+    "state": "Queensland",
+    "year": 1984,
+    "asr": 48.4
+  },
+  {
+    "state": "Queensland",
+    "year": 1985,
+    "asr": 48.5
+  },
+  {
+    "state": "Queensland",
+    "year": 1986,
+    "asr": 54.1
+  },
+  {
+    "state": "Queensland",
+    "year": 1987,
+    "asr": 57.3
+  },
+  {
+    "state": "Queensland",
+    "year": 1988,
+    "asr": 56.0
+  },
+  {
+    "state": "Queensland",
+    "year": 1989,
+    "asr": 55.3
+  },
+  {
+    "state": "Queensland",
+    "year": 1990,
+    "asr": 54.3
+  },
+  {
+    "state": "Queensland",
+    "year": 1991,
+    "asr": 52.9
+  },
+  {
+    "state": "Queensland",
+    "year": 1992,
+    "asr": 57.7
+  },
+  {
+    "state": "Queensland",
+    "year": 1993,
+    "asr": 54.7
+  },
+  {
+    "state": "Queensland",
+    "year": 1994,
+    "asr": 56.4
+  },
+  {
+    "state": "Queensland",
+    "year": 1995,
+    "asr": 60.8
+  },
+  {
+    "state": "Queensland",
+    "year": 1996,
+    "asr": 64.8
+  },
+  {
+    "state": "Queensland",
+    "year": 1997,
+    "asr": 67.9
+  },
+  {
+    "state": "Queensland",
+    "year": 1998,
+    "asr": 66.6
+  },
+  {
+    "state": "Queensland",
+    "year": 1999,
+    "asr": 62.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2000,
+    "asr": 67.1
+  },
+  {
+    "state": "Queensland",
+    "year": 2001,
+    "asr": 67.7
+  },
+  {
+    "state": "Queensland",
+    "year": 2002,
+    "asr": 71.5
+  },
+  {
+    "state": "Queensland",
+    "year": 2003,
+    "asr": 65.9
+  },
+  {
+    "state": "Queensland",
+    "year": 2004,
+    "asr": 62.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2005,
+    "asr": 69.4
+  },
+  {
+    "state": "Queensland",
+    "year": 2006,
+    "asr": 62.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2007,
+    "asr": 65.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2008,
+    "asr": 69.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2009,
+    "asr": 69.5
+  },
+  {
+    "state": "Queensland",
+    "year": 2010,
+    "asr": 68.9
+  },
+  {
+    "state": "Queensland",
+    "year": 2011,
+    "asr": 71.0
+  },
+  {
+    "state": "Queensland",
+    "year": 2012,
+    "asr": 72.3
+  },
+  {
+    "state": "Queensland",
+    "year": 2013,
+    "asr": 75.6
+  },
+  {
+    "state": "Queensland",
+    "year": 2014,
+    "asr": 73.8
+  },
+  {
+    "state": "Queensland",
+    "year": 2015,
+    "asr": 73.0
+  },
+  {
+    "state": "Queensland",
+    "year": 2016,
+    "asr": 75.1
+  },
+  {
+    "state": "Queensland",
+    "year": 2017,
+    "asr": 76.8
+  },
+  {
+    "state": "Queensland",
+    "year": 2018,
+    "asr": 73.2
+  },
+  {
+    "state": "Queensland",
+    "year": 2019,
+    "asr": 77.6
+  },
+  {
+    "state": "Queensland",
+    "year": 2020,
+    "asr": 70.2
+  },
+  {
+    "state": "Queensland",
+    "year": 2021,
+    "asr": 65.7
+  },
+  {
+    "state": "Queensland",
+    "year": 2022,
+    "asr": 67.8
+  },
+  {
+    "state": "South Australia",
+    "year": 1982,
+    "asr": 21.2
+  },
+  {
+    "state": "South Australia",
+    "year": 1983,
+    "asr": 21.9
+  },
+  {
+    "state": "South Australia",
+    "year": 1984,
+    "asr": 22.8
+  },
+  {
+    "state": "South Australia",
+    "year": 1985,
+    "asr": 28.6
+  },
+  {
+    "state": "South Australia",
+    "year": 1986,
+    "asr": 27.6
+  },
+  {
+    "state": "South Australia",
+    "year": 1987,
+    "asr": 29.6
+  },
+  {
+    "state": "South Australia",
+    "year": 1988,
+    "asr": 34.9
+  },
+  {
+    "state": "South Australia",
+    "year": 1989,
+    "asr": 32.4
+  },
+  {
+    "state": "South Australia",
+    "year": 1990,
+    "asr": 33.9
+  },
+  {
+    "state": "South Australia",
+    "year": 1991,
+    "asr": 33.5
+  },
+  {
+    "state": "South Australia",
+    "year": 1992,
+    "asr": 41.3
+  },
+  {
+    "state": "South Australia",
+    "year": 1993,
+    "asr": 37.4
+  },
+  {
+    "state": "South Australia",
+    "year": 1994,
+    "asr": 41.8
+  },
+  {
+    "state": "South Australia",
+    "year": 1995,
+    "asr": 39.4
+  },
+  {
+    "state": "South Australia",
+    "year": 1996,
+    "asr": 39.1
+  },
+  {
+    "state": "South Australia",
+    "year": 1997,
+    "asr": 43.6
+  },
+  {
+    "state": "South Australia",
+    "year": 1998,
+    "asr": 37.5
+  },
+  {
+    "state": "South Australia",
+    "year": 1999,
+    "asr": 38.8
+  },
+  {
+    "state": "South Australia",
+    "year": 2000,
+    "asr": 38.6
+  },
+  {
+    "state": "South Australia",
+    "year": 2001,
+    "asr": 38.8
+  },
+  {
+    "state": "South Australia",
+    "year": 2002,
+    "asr": 41.1
+  },
+  {
+    "state": "South Australia",
+    "year": 2003,
+    "asr": 39.7
+  },
+  {
+    "state": "South Australia",
+    "year": 2004,
+    "asr": 39.9
+  },
+  {
+    "state": "South Australia",
+    "year": 2005,
+    "asr": 42.3
+  },
+  {
+    "state": "South Australia",
+    "year": 2006,
+    "asr": 36.2
+  },
+  {
+    "state": "South Australia",
+    "year": 2007,
+    "asr": 34.8
+  },
+  {
+    "state": "South Australia",
+    "year": 2008,
+    "asr": 40.1
+  },
+  {
+    "state": "South Australia",
+    "year": 2009,
+    "asr": 36.3
+  },
+  {
+    "state": "South Australia",
+    "year": 2010,
+    "asr": 36.7
+  },
+  {
+    "state": "South Australia",
+    "year": 2011,
+    "asr": 35.7
+  },
+  {
+    "state": "South Australia",
+    "year": 2012,
+    "asr": 35.4
+  },
+  {
+    "state": "South Australia",
+    "year": 2013,
+    "asr": 36.0
+  },
+  {
+    "state": "South Australia",
+    "year": 2014,
+    "asr": 39.0
+  },
+  {
+    "state": "South Australia",
+    "year": 2015,
+    "asr": 36.6
+  },
+  {
+    "state": "South Australia",
+    "year": 2016,
+    "asr": 38.2
+  },
+  {
+    "state": "South Australia",
+    "year": 2017,
+    "asr": 37.3
+  },
+  {
+    "state": "South Australia",
+    "year": 2018,
+    "asr": 35.4
+  },
+  {
+    "state": "South Australia",
+    "year": 2019,
+    "asr": 39.8
+  },
+  {
+    "state": "South Australia",
+    "year": 2020,
+    "asr": 38.6
+  },
+  {
+    "state": "South Australia",
+    "year": 2021,
+    "asr": 36.7
+  },
+  {
+    "state": "South Australia",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "Tasmania",
+    "year": 1982,
+    "asr": 18.8
+  },
+  {
+    "state": "Tasmania",
+    "year": 1983,
+    "asr": 20.8
+  },
+  {
+    "state": "Tasmania",
+    "year": 1984,
+    "asr": 18.1
+  },
+  {
+    "state": "Tasmania",
+    "year": 1985,
+    "asr": 20.4
+  },
+  {
+    "state": "Tasmania",
+    "year": 1986,
+    "asr": 22.1
+  },
+  {
+    "state": "Tasmania",
+    "year": 1987,
+    "asr": 27.1
+  },
+  {
+    "state": "Tasmania",
+    "year": 1988,
+    "asr": 31.8
+  },
+  {
+    "state": "Tasmania",
+    "year": 1989,
+    "asr": 27.2
+  },
+  {
+    "state": "Tasmania",
+    "year": 1990,
+    "asr": 35.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 1991,
+    "asr": 34.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 1992,
+    "asr": 28.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 1993,
+    "asr": 31.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 1994,
+    "asr": 33.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 1995,
+    "asr": 40.4
+  },
+  {
+    "state": "Tasmania",
+    "year": 1996,
+    "asr": 41.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 1997,
+    "asr": 40.2
+  },
+  {
+    "state": "Tasmania",
+    "year": 1998,
+    "asr": 36.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 1999,
+    "asr": 39.9
+  },
+  {
+    "state": "Tasmania",
+    "year": 2000,
+    "asr": 47.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 2001,
+    "asr": 42.5
+  },
+  {
+    "state": "Tasmania",
+    "year": 2002,
+    "asr": 45.2
+  },
+  {
+    "state": "Tasmania",
+    "year": 2003,
+    "asr": 43.4
+  },
+  {
+    "state": "Tasmania",
+    "year": 2004,
+    "asr": 42.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 2005,
+    "asr": 53.7
+  },
+  {
+    "state": "Tasmania",
+    "year": 2006,
+    "asr": 47.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 2007,
+    "asr": 41.7
+  },
+  {
+    "state": "Tasmania",
+    "year": 2008,
+    "asr": 49.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 2009,
+    "asr": 47.8
+  },
+  {
+    "state": "Tasmania",
+    "year": 2010,
+    "asr": 49.4
+  },
+  {
+    "state": "Tasmania",
+    "year": 2011,
+    "asr": 43.6
+  },
+  {
+    "state": "Tasmania",
+    "year": 2012,
+    "asr": 41.3
+  },
+  {
+    "state": "Tasmania",
+    "year": 2013,
+    "asr": 44.2
+  },
+  {
+    "state": "Tasmania",
+    "year": 2014,
+    "asr": 51.0
+  },
+  {
+    "state": "Tasmania",
+    "year": 2015,
+    "asr": 46.6
+  },
+  {
+    "state": "Tasmania",
+    "year": 2016,
+    "asr": 51.7
+  },
+  {
+    "state": "Tasmania",
+    "year": 2017,
+    "asr": 49.9
+  },
+  {
+    "state": "Tasmania",
+    "year": 2018,
+    "asr": 58.6
+  },
+  {
+    "state": "Tasmania",
+    "year": 2019,
+    "asr": 60.6
+  },
+  {
+    "state": "Tasmania",
+    "year": 2020,
+    "asr": 60.8
+  },
+  {
+    "state": "Tasmania",
+    "year": 2021,
+    "asr": 52.2
+  },
+  {
+    "state": "Tasmania",
+    "year": 2022,
+    "asr": null
+  },
+  {
+    "state": "Victoria",
+    "year": 1982,
+    "asr": 18.4
+  },
+  {
+    "state": "Victoria",
+    "year": 1983,
+    "asr": 20.3
+  },
+  {
+    "state": "Victoria",
+    "year": 1984,
+    "asr": 20.4
+  },
+  {
+    "state": "Victoria",
+    "year": 1985,
+    "asr": 23.6
+  },
+  {
+    "state": "Victoria",
+    "year": 1986,
+    "asr": 22.1
+  },
+  {
+    "state": "Victoria",
+    "year": 1987,
+    "asr": 26.0
+  },
+  {
+    "state": "Victoria",
+    "year": 1988,
+    "asr": 28.9
+  },
+  {
+    "state": "Victoria",
+    "year": 1989,
+    "asr": 27.9
+  },
+  {
+    "state": "Victoria",
+    "year": 1990,
+    "asr": 27.6
+  },
+  {
+    "state": "Victoria",
+    "year": 1991,
+    "asr": 27.4
+  },
+  {
+    "state": "Victoria",
+    "year": 1992,
+    "asr": 33.1
+  },
+  {
+    "state": "Victoria",
+    "year": 1993,
+    "asr": 30.0
+  },
+  {
+    "state": "Victoria",
+    "year": 1994,
+    "asr": 30.9
+  },
+  {
+    "state": "Victoria",
+    "year": 1995,
+    "asr": 35.6
+  },
+  {
+    "state": "Victoria",
+    "year": 1996,
+    "asr": 38.5
+  },
+  {
+    "state": "Victoria",
+    "year": 1997,
+    "asr": 40.4
+  },
+  {
+    "state": "Victoria",
+    "year": 1998,
+    "asr": 34.0
+  },
+  {
+    "state": "Victoria",
+    "year": 1999,
+    "asr": 36.1
+  },
+  {
+    "state": "Victoria",
+    "year": 2000,
+    "asr": 36.6
+  },
+  {
+    "state": "Victoria",
+    "year": 2001,
+    "asr": 36.0
+  },
+  {
+    "state": "Victoria",
+    "year": 2002,
+    "asr": 37.2
+  },
+  {
+    "state": "Victoria",
+    "year": 2003,
+    "asr": 35.0
+  },
+  {
+    "state": "Victoria",
+    "year": 2004,
+    "asr": 38.5
+  },
+  {
+    "state": "Victoria",
+    "year": 2005,
+    "asr": 44.2
+  },
+  {
+    "state": "Victoria",
+    "year": 2006,
+    "asr": 41.0
+  },
+  {
+    "state": "Victoria",
+    "year": 2007,
+    "asr": 39.8
+  },
+  {
+    "state": "Victoria",
+    "year": 2008,
+    "asr": 39.9
+  },
+  {
+    "state": "Victoria",
+    "year": 2009,
+    "asr": 41.5
+  },
+  {
+    "state": "Victoria",
+    "year": 2010,
+    "asr": 38.7
+  },
+  {
+    "state": "Victoria",
+    "year": 2011,
+    "asr": 34.3
+  },
+  {
+    "state": "Victoria",
+    "year": 2012,
+    "asr": 36.8
+  },
+  {
+    "state": "Victoria",
+    "year": 2013,
+    "asr": 36.6
+  },
+  {
+    "state": "Victoria",
+    "year": 2014,
+    "asr": 37.8
+  },
+  {
+    "state": "Victoria",
+    "year": 2015,
+    "asr": 40.4
+  },
+  {
+    "state": "Victoria",
+    "year": 2016,
+    "asr": 41.2
+  },
+  {
+    "state": "Victoria",
+    "year": 2017,
+    "asr": 42.3
+  },
+  {
+    "state": "Victoria",
+    "year": 2018,
+    "asr": 42.6
+  },
+  {
+    "state": "Victoria",
+    "year": 2019,
+    "asr": 38.3
+  },
+  {
+    "state": "Victoria",
+    "year": 2020,
+    "asr": 34.1
+  },
+  {
+    "state": "Victoria",
+    "year": 2021,
+    "asr": 36.5
+  },
+  {
+    "state": "Victoria",
+    "year": 2022,
+    "asr": 36.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 1982,
+    "asr": 30.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 1983,
+    "asr": 28.8
+  },
+  {
+    "state": "Western Australia",
+    "year": 1984,
+    "asr": 29.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 1985,
+    "asr": 35.8
+  },
+  {
+    "state": "Western Australia",
+    "year": 1986,
+    "asr": 33.0
+  },
+  {
+    "state": "Western Australia",
+    "year": 1987,
+    "asr": 37.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 1988,
+    "asr": 41.9
+  },
+  {
+    "state": "Western Australia",
+    "year": 1989,
+    "asr": 35.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 1990,
+    "asr": 37.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 1991,
+    "asr": 43.0
+  },
+  {
+    "state": "Western Australia",
+    "year": 1992,
+    "asr": 41.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 1993,
+    "asr": 47.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 1994,
+    "asr": 50.9
+  },
+  {
+    "state": "Western Australia",
+    "year": 1995,
+    "asr": 53.1
+  },
+  {
+    "state": "Western Australia",
+    "year": 1996,
+    "asr": 46.0
+  },
+  {
+    "state": "Western Australia",
+    "year": 1997,
+    "asr": 42.2
+  },
+  {
+    "state": "Western Australia",
+    "year": 1998,
+    "asr": 44.9
+  },
+  {
+    "state": "Western Australia",
+    "year": 1999,
+    "asr": 54.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2000,
+    "asr": 50.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2001,
+    "asr": 49.8
+  },
+  {
+    "state": "Western Australia",
+    "year": 2002,
+    "asr": 57.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 2003,
+    "asr": 56.8
+  },
+  {
+    "state": "Western Australia",
+    "year": 2004,
+    "asr": 50.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2005,
+    "asr": 50.2
+  },
+  {
+    "state": "Western Australia",
+    "year": 2006,
+    "asr": 53.1
+  },
+  {
+    "state": "Western Australia",
+    "year": 2007,
+    "asr": 46.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2008,
+    "asr": 49.7
+  },
+  {
+    "state": "Western Australia",
+    "year": 2009,
+    "asr": 46.0
+  },
+  {
+    "state": "Western Australia",
+    "year": 2010,
+    "asr": 44.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2011,
+    "asr": 46.4
+  },
+  {
+    "state": "Western Australia",
+    "year": 2012,
+    "asr": 46.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 2013,
+    "asr": 52.1
+  },
+  {
+    "state": "Western Australia",
+    "year": 2014,
+    "asr": 50.1
+  },
+  {
+    "state": "Western Australia",
+    "year": 2015,
+    "asr": 59.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 2016,
+    "asr": 57.0
+  },
+  {
+    "state": "Western Australia",
+    "year": 2017,
+    "asr": 52.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 2018,
+    "asr": 52.1
+  },
+  {
+    "state": "Western Australia",
+    "year": 2019,
+    "asr": 54.8
+  },
+  {
+    "state": "Western Australia",
+    "year": 2020,
+    "asr": 46.6
+  },
+  {
+    "state": "Western Australia",
+    "year": 2021,
+    "asr": 50.3
+  },
+  {
+    "state": "Western Australia",
+    "year": 2022,
+    "asr": null
+  }
+]
