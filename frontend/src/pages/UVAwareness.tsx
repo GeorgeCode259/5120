@@ -1,14 +1,40 @@
 import React from 'react';
 import SkinCancerChart from '../components/SkinCancerChart';
 import UvIndexChart from '../components/UvIndexChart';
+import FlipCard from '../components/FlipCard';
 
 const UVAwareness: React.FC = () => {
   return (
     <div className="uv-awareness-container">
       <h1>UV Awareness & Skin Health</h1>
-
+      
       <div className="awareness-grid">
-        {/* UV Index Chart (Chart 2) */}
+        {/* Section 1: Myths & Facts */}
+        <div className="awareness-card">
+          <h2>Think you know the facts?</h2>
+          <p>Tap each card to reveal the truth.</p>
+          
+          <div className="myths-section" style={{ marginTop: '20px' }}>
+            <div className="cards-container">
+              <FlipCard 
+                myth="You don't need sunscreen on cloudy days."
+                fact="Up to 80% of UV radiation passes through clouds. You can burn on a cool, overcast day — always check the UV index, not the weather."
+              />
+              <FlipCard 
+                myth="UV radiation only matters in summer."
+                fact="In most of Australia, UV reaches 3 or above year-round. In QLD and NT, sun protection is needed every single day of the year."
+              />
+            </div>
+            <p className="source-text">Source: Cancer Council Australia / WHO INTERSUN Programme.</p>
+          </div>
+        </div>
+
+        {/* Divider 1 */}
+        <div className="section-divider">
+          <h2>Across Australia, UV levels are consistently high.</h2>
+        </div>
+
+        {/* Section 2: UV Index Trend */}
         <div className="awareness-card">
           <h2>UV Index Monthly Variation (2021)</h2>
           <p>Monthly average peak UV index across major Australian cities.</p>
@@ -21,51 +47,13 @@ const UVAwareness: React.FC = () => {
           </p>
         </div>
 
-        {/* UV Impact Card */}
+        {/* Divider 2 */}
+        <div className="section-divider">
+          <h2>And the impact on skin health is real.</h2>
+        </div>
+
+        {/* Section 3: Cancer Chart */}
         <div className="awareness-card">
-          <h2>Impact of UV Exposure</h2>
-          <div className="impact-list">
-            <div className="impact-item short-term">
-              <h3>Short Term</h3>
-              <p>Sunburn, tanning (skin damage), and eye damage like photokeratitis.</p>
-            </div>
-            <div className="impact-item long-term">
-              <h3>Long Term</h3>
-              <p>Premature aging (wrinkles, leathery skin), eye cataracts, and increased risk of skin cancer.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Interactive Risk Visual */}
-        <div className="awareness-card" style={{ gridColumn: '1 / -1' }}>
-          <h2>UV Index Risk Levels</h2>
-          <p>Hover over the bars to see protection requirements.</p>
-          
-          <div className="risk-visual">
-            {[
-              { level: '1-2', height: '20%', color: '#4caf50', risk: 'Low', advice: 'No protection required.' },
-              { level: '3-5', height: '40%', color: '#ffeb3b', risk: 'Moderate', advice: 'Sun protection recommended.' },
-              { level: '6-7', height: '60%', color: '#ff9800', risk: 'High', advice: 'Protection essential.' },
-              { level: '8-10', height: '80%', color: '#f44336', risk: 'Very High', advice: 'Extra protection needed.' },
-              { level: '11+', height: '100%', color: '#9c27b0', risk: 'Extreme', advice: 'Avoid sun, full protection.' }
-            ].map((item, index) => (
-              <div 
-                key={index} 
-                className="risk-column" 
-                style={{ height: item.height, backgroundColor: item.color }}
-              >
-                <div className="tooltip">
-                  <strong>{item.risk}</strong><br/>
-                  {item.advice}
-                </div>
-                <span className="label">UV {item.level}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Melanoma Trend Chart (Chart 1) */}
-        <div className="awareness-card" style={{ gridColumn: '1 / -1' }}>
           <h2>Melanoma Incidence Trends</h2>
           <div className="chart-visual" style={{ marginTop: '20px' }}>
             <SkinCancerChart />
