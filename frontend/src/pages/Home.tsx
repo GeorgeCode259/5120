@@ -51,9 +51,35 @@ const Home: React.FC = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSearch();
-      setShowDropdown(false);
+      if (showDropdown && results.length > 0) {
+        handleSelectLocation(results[0]);
+      } else if (!loading && !showDropdown && searchQuery.trim()) {
+        // If not loading and no dropdown is shown, allow normal search
+        handleSearch();
+        setShowDropdown(false);
+      }
+      // If loading or waiting for results, do nothing and wait
     }
+  };
+
+  const highlightText = (text: string, query: string) => {
+    if (!query || !text) return <span>{text}</span>;
+    
+    // Escape special characters in query to prevent regex errors
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const parts = text.split(new RegExp(`(${escapedQuery})`, 'gi'));
+    
+    return (
+      <span>
+        {parts.map((part, i) => 
+          part.toLowerCase() === query.toLowerCase() ? (
+            <span key={i} style={{ color: '#000', fontWeight: 'bold' }}>{part}</span>
+          ) : (
+            <span key={i}>{part}</span>
+          )
+        )}
+      </span>
+    );
   };
 
   return (
@@ -116,12 +142,12 @@ const Home: React.FC = () => {
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
                   >
-                    <div style={{ fontWeight: 'bold', color: '#333', fontSize: '14px', marginBottom: '4px' }}>
-                      {loc.administrative_units.street ? `${loc.administrative_units.street}, ` : ''}
-                      {loc.administrative_units.suburb || loc.administrative_units.city}
+                    <div style={{ fontWeight: 'normal', color: '#333', fontSize: '14px', marginBottom: '4px' }}>
+                      {loc.administrative_units.street ? <>{highlightText(loc.administrative_units.street, searchQuery)}, </> : ''}
+                      {highlightText(loc.administrative_units.suburb || loc.administrative_units.city, searchQuery)}
                     </div>
                     <div style={{ fontSize: '12px', color: '#666' }}>
-                      {loc.full_address}
+                      {highlightText(loc.full_address, searchQuery)}
                     </div>
                   </div>
                 ))}

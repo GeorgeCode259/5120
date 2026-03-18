@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
               className={`navbar-item ${location.pathname === '/dashboard' ? 'active' : ''}`}
               onClick={closeMenu}
             >
-              Dashboard
+              Check UV Index
             </Link>
             <Link 
               to="/uv-awareness" 

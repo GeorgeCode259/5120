@@ -122,6 +122,12 @@ body {
     cursor: pointer;
     box-shadow: $box-shadow;
     white-space: nowrap;
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:active {
+      background-color: #000000;
+      transform: scale(0.98);
+    }
 
     svg {
       width: 20px;
