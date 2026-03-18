@@ -331,14 +331,20 @@
 .section-divider {
   text-align: center;
   padding: 40px 20px;
-  border-top: 1px solid rgb(0, 0, 0);
-  border-bottom: 1px solid rgb(0, 0, 0);
   margin: 20px 0;
+  
+  // White frosted glass card background
+  background-color: $card-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: $glass-border;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
   
   h2 {
     font-size: 24px;
     font-weight: 700;
-    color: #333;
+    color: #000000;
     margin: 0;
     border: none;
     padding: 0;
