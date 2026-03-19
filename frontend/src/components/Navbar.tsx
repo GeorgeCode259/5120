@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
               className={`navbar-item ${location.pathname === '/uv-awareness' ? 'active' : ''}`}
               onClick={closeMenu}
             >
-              Awareness
+              UV Awareness
             </Link>
           </div>
         </div>
